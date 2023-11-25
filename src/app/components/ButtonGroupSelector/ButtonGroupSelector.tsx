@@ -29,18 +29,14 @@ export const ButtonGroupSelector = ({elementProps}: ButtonGroupProps) => {
             key={elementProp.title}
             value={elementProp.title}
             className={({ active, checked }) =>
-              `${
-                active
-                  ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
-                  : ''
-              }  ${checked ? 'bg-sky-900/75 text-white' : 'bg-white'}
+              `${checked ? 'bg-sky-900/75 text-white' : 'bg-white'}
                     focus:outline-none\ } relative flex cursor-pointer rounded-lg px-5 py-4
-                shadow-md`
+                shadow-md space-y-6`
             }
           >
-            {elementProp.suffixIcon}
-            {elementProp.title}
             {elementProp.prefixIcon}
+            {elementProp.title}
+            {elementProp.suffixIcon}
           </RadioGroup.Option>
           </>
       ))}
