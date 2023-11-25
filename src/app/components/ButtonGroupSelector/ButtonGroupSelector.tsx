@@ -1,28 +1,33 @@
 'use client'
 
 import {RadioGroup} from "@headlessui/react";
-import React, {useState} from "react";
+import React, {ReactElement, useState} from "react";
 
-export const ButtonGroupSelector = () => {
-  const plans = [
-    {
-      name: 'Original Transcription',
-    },
-    { name: 'My Transcription' },
-  ];
+interface ElementsProps {
+  title: string,
+  prefixIcon?: ReactElement<SVGElement>
+  suffixIcon?: ReactElement<SVGElement>
+}
 
-  const [selected, setSelected] = useState(plans[0]);
+interface ButtonGroupProps {
+  elementProps: ElementsProps[]
+  onSelect?: (index: number) => void
+}
+
+export const ButtonGroupSelector = ({elementProps}: ButtonGroupProps) => {
+
+  const [selected, setSelected] = useState();
   return (
     <RadioGroup
       className='flex flex-row space-x-2'
       value={selected}
       onChange={setSelected}
     >
-      {plans.map((plan) => (
-        <>
+      {elementProps.map((elementProp, index) => (
+          <>
           <RadioGroup.Option
-            key={plan.name}
-            value={plan.name}
+            key={elementProp.title}
+            value={elementProp.title}
             className={({ active, checked }) =>
               `${
                 active
@@ -33,9 +38,11 @@ export const ButtonGroupSelector = () => {
                 shadow-md`
             }
           >
-            {plan.name}
+            {elementProp.suffixIcon}
+            {elementProp.title}
+            {elementProp.prefixIcon}
           </RadioGroup.Option>
-        </>
+          </>
       ))}
     </RadioGroup>
   );
