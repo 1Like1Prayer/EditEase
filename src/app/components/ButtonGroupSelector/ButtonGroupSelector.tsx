@@ -28,7 +28,7 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
             key={elementProp.title}
             value={elementProp.title}
             className={({ active, checked }) =>
-              `${checked ? 'bg-sky-900/75 text-white' : 'bg-white'}
+              `${checked ? 'bg-secondary/75 text-white' : 'bg-white'}
                     focus:outline-none\ } relative flex cursor-pointer space-y-6 rounded-lg px-5
                 py-4 shadow-md`
             }
