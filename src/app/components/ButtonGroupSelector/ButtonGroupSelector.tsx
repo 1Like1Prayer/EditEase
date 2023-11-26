@@ -22,22 +22,22 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
       value={selected}
       onChange={setSelected}
     >
-      {elementProps.map((elementProp, index) => (
-        <>
+      {elementProps.map((elementProp) => (
+        <div key={elementProp.title}>
           <RadioGroup.Option
             key={elementProp.title}
             value={elementProp.title}
-            className={({ active, checked }) =>
+            className={({ checked }) =>
               `${checked ? 'bg-secondary/75 text-white' : 'bg-white'}
-                    focus:outline-none\ } relative flex cursor-pointer space-y-6 rounded-lg px-5
-                py-4 shadow-md`
+                    focus:outline-none\ } relative cursor-pointer rounded-md px-4 grid grid-flow-col auto-cols-max gap-2
+                py-1 shadow-md items-center`
             }
           >
-            {elementProp.prefixIcon}
-            {elementProp.title}
-            {elementProp.suffixIcon}
+            <div>{elementProp.prefixIcon}</div>
+            <div className='col-span-4 align-middle'>{elementProp.title}</div>
+            <div>{elementProp.suffixIcon}</div>
           </RadioGroup.Option>
-        </>
+        </div>
       ))}
     </RadioGroup>
   );
