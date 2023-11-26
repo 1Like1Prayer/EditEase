@@ -1,13 +1,12 @@
-'use client';
+import React from 'react';
+import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { HeaderComponent } from '@/app/components/headerComponent/HeaderComponent';
 
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { RadioGroup } from '@headlessui/react';
-import {ButtonGroupSelector} from "@/app/components/ButtonGroupSelector/ButtonGroupSelector";
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <ButtonGroupSelector/>
+    <main className='flex min-h-screen flex-col items-center space-y-10 py-12'>
+      <HeaderComponent companyName={'Edit Ease'} />
+      <ButtonGroupSelector />
     </main>
   );
 }
