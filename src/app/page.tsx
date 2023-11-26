@@ -1,11 +1,10 @@
 'use client';
 
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { RadioGroup } from '@headlessui/react';
+import React from 'react';
 import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
-import { BracketsIcon } from '@/app/components/icons/BracketsIcon';
-import { PersonIcon } from '@/app/components/icons/PersonIcon';
+import { BracketsIcon } from '@/app/icons/BracketsIcon';
+import { PersonIcon } from '@/app/icons/PersonIcon';
+import {VideosUploader} from "@/app/components/VideosUploader/VideosUploader";
 
 export default function Home() {
   return (
@@ -20,6 +19,9 @@ export default function Home() {
             { title: 'My Transcription', suffixIcon: <PersonIcon /> },
           ]}
         />
+      </div>
+      <div className='card flex space-y-2 bg-primary p-4'>
+        <VideosUploader/>
       </div>
     </main>
   );
