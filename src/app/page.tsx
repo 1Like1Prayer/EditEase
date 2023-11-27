@@ -9,18 +9,54 @@ import { PersonIcon } from '@/app/components/icons/PersonIcon';
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <div className='card flex space-y-2 bg-primary p-4'>
-        <p className='card-title'>
-          The way i want to create<b>Transcription</b>
-        </p>
-        <ButtonGroupSelector
-          elementProps={[
-            { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
-            { title: 'My Transcription', suffixIcon: <PersonIcon /> },
-          ]}
-        />
+    <div className='grid min-h-screen grid-flow-col gap-6'>
+      <div className='col-span-2 flex flex-col items-stretch space-y-2'>
+        <div className='bg-background card flex space-y-2 p-4'>
+          <p className='card-title'>
+            The way i want to create<b>Transcription</b>
+          </p>
+          <ButtonGroupSelector
+            elementProps={[
+              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
+              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+            ]}
+          />
+        </div>
+        <div className='bg-background card flex space-y-2 p-4'>
+          <p className='card-title'>Dimension</p>
+          <ButtonGroupSelector
+            elementProps={[
+              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
+              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+            ]}
+          />
+        </div>
+        <div className='bg-background card flex space-y-2 p-4'>
+          <p className='card-title'>
+            The way i want to create<b>Transcription</b>
+          </p>
+          <ButtonGroupSelector
+            elementProps={[
+              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
+              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+            ]}
+          />
+        </div>
       </div>
-    </main>
+      <div className={'flex-row-'}>
+        <div className='bg-background card flex space-y-2 p-4'>
+          <p className='card-title'>
+            The way i want to create<b>Transcription</b>
+          </p>
+          <ButtonGroupSelector
+            elementProps={[
+              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
+              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+            ]}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

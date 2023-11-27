@@ -28,9 +28,9 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
             key={elementProp.title}
             value={elementProp.title}
             className={({ checked }) =>
-              `${checked ? 'bg-secondary/75 text-white' : 'bg-white'}
+              `${checked ? 'bg-secondary text-white' : 'bg-white'}
                     focus:outline-none\ } relative cursor-pointer rounded-md px-4 grid grid-flow-col auto-cols-max gap-2
-                py-1 shadow-md items-center`
+                py-1 items-center border-2`
             }
           >
             <div>{elementProp.prefixIcon}</div>
