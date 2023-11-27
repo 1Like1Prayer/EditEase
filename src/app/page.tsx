@@ -22,26 +22,31 @@ export default function Home() {
             ]}
           />
         </div>
-        <div className='bg-background card flex space-y-2 p-4'>
-          <p className='card-title'>Dimension</p>
-          <ButtonGroupSelector
-            elementProps={[
-              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
-              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
-              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
-            ]}
-          />
-        </div>
-        <div className='bg-background card flex space-y-2 p-4'>
-          <p className='card-title'>
-            The way i want to create<b>Transcription</b>
-          </p>
-          <ButtonGroupSelector
-            elementProps={[
-              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
-              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
-            ]}
-          />
+        <div className='grid grid-flow-col gap-6'>
+          <div className='bg-background card flex space-y-2 p-4'>
+            <p className='card-title'>Subtitle Style</p>
+            <ButtonGroupSelector
+              elementProps={[
+                {
+                  title: 'Original Transcription',
+                  suffixIcon: <BracketsIcon />,
+                },
+                { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+              ]}
+            />
+          </div>
+          <div className='bg-background card flex space-y-2 p-4'>
+            <p className='card-title'>Subtitle Style</p>
+            <ButtonGroupSelector
+              elementProps={[
+                  { title: 'None', suffixIcon: <BracketsIcon /> },
+                  { title: 'Closed Caption', suffixIcon: <PersonIcon /> },
+                  { title: 'Big Title', suffixIcon: <PersonIcon /> },
+                  { title: 'Word By Word', suffixIcon: <PersonIcon /> },
+              ]}
+              gridCols={2}
+            />
+          </div>
         </div>
       </div>
       <div className={'flex-row-'}>
@@ -51,8 +56,10 @@ export default function Home() {
           </p>
           <ButtonGroupSelector
             elementProps={[
-              { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
-              { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+              { title: 'None', suffixIcon: <BracketsIcon /> },
+              { title: 'Closed Caption', suffixIcon: <PersonIcon /> },
+              { title: 'Big Title', suffixIcon: <PersonIcon /> },
+              { title: 'Word By Word', suffixIcon: <PersonIcon /> },
             ]}
           />
         </div>

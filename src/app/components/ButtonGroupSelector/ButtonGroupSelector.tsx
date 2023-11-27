@@ -12,13 +12,20 @@ interface ElementsProps {
 interface ButtonGroupProps {
   elementProps: ElementsProps[];
   onSelect?: (index: number) => void;
+  gridCols?: number;
 }
 
-export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
+export const ButtonGroupSelector = ({
+  elementProps,
+  onSelect,
+  gridCols,
+}: ButtonGroupProps) => {
   const [selected, setSelected] = useState();
   return (
     <RadioGroup
-      className='flex flex-row space-x-2'
+      className={`grid grid-flow-col space-x-2 ${
+        gridCols ? `grid-cols-${gridCols}` : ''
+      }`}
       value={selected}
       onChange={setSelected}
     >
@@ -28,9 +35,9 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
             key={elementProp.title}
             value={elementProp.title}
             className={({ checked }) =>
-              `${checked ? 'bg-secondary text-white' : 'bg-white'}
-                    focus:outline-none\ } relative cursor-pointer rounded-md px-4 grid grid-flow-col auto-cols-max gap-2
-                py-1 items-center border-2`
+              `${checked ? 'bg-primary text-white' : 'bg-white'}
+                    focus:outline-none\ } relative grid cursor-pointer auto-cols-max grid-flow-col items-center gap-2 rounded-md
+                border-2 px-4 py-1`
             }
           >
             <div>{elementProp.prefixIcon}</div>
