@@ -22,30 +22,30 @@ export const ButtonGroupSelector = ({
 }: ButtonGroupProps) => {
   const [selected, setSelected] = useState();
   return (
-    <RadioGroup
-      className={`grid grid-flow-col space-x-2 ${
-        gridCols ? `grid-cols-${gridCols}` : ''
-      }`}
-      value={selected}
-      onChange={setSelected}
-    >
-      {elementProps.map((elementProp) => (
-        <div key={elementProp.title}>
+    <RadioGroup value={selected} onChange={setSelected}>
+      <div className={`grid space-x-2 ${
+          gridCols ? `grid-cols-${gridCols}` : 'grid-flow-col'
+      }`}>
+        {elementProps.map((elementProp) => (
           <RadioGroup.Option
             key={elementProp.title}
             value={elementProp.title}
             className={({ checked }) =>
-              `${checked ? 'bg-primary text-white' : 'bg-white'}
-                    focus:outline-none\ } relative grid cursor-pointer auto-cols-max grid-flow-col items-center gap-2 rounded-md
-                border-2 px-4 py-1`
+              `${
+                checked
+                  ? 'bg-primary text-white'
+                  : 'bg-white hover:bg-primary/30 active:bg-primary/40'
+              }
+                grid cursor-pointer auto-cols-max grid-flow-col items-center gap-2
+                rounded-md px-4 py-1 m-1 shadow-sm transition focus:outline-none`
             }
           >
             <div>{elementProp.prefixIcon}</div>
             <div className='col-span-4 align-middle'>{elementProp.title}</div>
             <div>{elementProp.suffixIcon}</div>
           </RadioGroup.Option>
-        </div>
-      ))}
+        ))}
+      </div>
     </RadioGroup>
   );
 };
