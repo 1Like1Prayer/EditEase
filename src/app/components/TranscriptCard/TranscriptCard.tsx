@@ -5,16 +5,14 @@ import React from 'react';
 
 export const TranscriptCard = () => {
   return (
-    <div className='card w-9/12 bg-[#7A26C1] text-neutral-content sm:w-1/4 '>
-      <div className='card-body'>
-        <p className='card-title'>Transcription</p>
-        <ButtonGroupSelector
-          elementProps={[
-            { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
-            { title: 'My Transcription', suffixIcon: <PersonIcon /> },
-          ]}
-        />
-      </div>
+    <div className='w-9/12 rounded-md bg-[#7A26C1] shadow-lg shadow-[#7A26C1] sm:w-1/4 space-y-4'>
+      <div className='pt-2 text-center text-[##9A9A9A]'>Transcription</div>
+      <ButtonGroupSelector
+        elementProps={[
+          { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
+          { title: 'My Transcription', suffixIcon: <PersonIcon /> },
+        ]}
+      />
     </div>
   );
 };
