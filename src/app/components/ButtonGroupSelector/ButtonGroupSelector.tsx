@@ -18,7 +18,7 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
   const [selected, setSelected] = useState();
   return (
     <RadioGroup
-      className='flex flex-row justify-evenly gap-4 px-2'
+      className='grid grid-cols-2 gap-4'
       value={selected}
       onChange={setSelected}
     >
@@ -28,7 +28,7 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
           value={elementProp.title}
           className={({ checked }) =>
             `${checked ? 'bg-[#EE09CE] text-white' : 'bg-gray-400'}
-                    flex h-1/2 w-1/2 cursor-pointer flex-row items-center justify-evenly rounded-md text-xs shadow-lg focus:outline-none sm:text-sm`
+                    justify-self-center flex w-5/6 px-1 cursor-pointer flex-row items-center justify-evenly rounded-md text-xs shadow-lg focus:outline-none `
           }
         >
           {elementProp.prefixIcon}
