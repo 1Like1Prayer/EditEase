@@ -23,20 +23,18 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
       onChange={setSelected}
     >
       {elementProps.map((elementProp) => (
-
-          <RadioGroup.Option
-            key={elementProp.title}
-            value={elementProp.title}
-            className={({ checked }) =>
-              `${checked ? 'bg-[#EE09CE] text-white' : 'bg-gray-400'}
-                    cursor-pointer rounded-md shadow-lg focus:outline-none w-1/2 text-sm flex flex-row justify-evenly items-center h-1/2`
-            }
-          >
-            {elementProp.prefixIcon}
-            {elementProp.title}
-            {elementProp.suffixIcon}
-          </RadioGroup.Option>
-
+        <RadioGroup.Option
+          key={elementProp.title}
+          value={elementProp.title}
+          className={({ checked }) =>
+            `${checked ? 'bg-[#EE09CE] text-white' : 'bg-gray-400'}
+                    flex h-1/2 w-1/2 cursor-pointer flex-row items-center justify-evenly rounded-md text-sm shadow-lg focus:outline-none`
+          }
+        >
+          {elementProp.prefixIcon}
+          {elementProp.title}
+          {elementProp.suffixIcon}
+        </RadioGroup.Option>
       ))}
     </RadioGroup>
   );
