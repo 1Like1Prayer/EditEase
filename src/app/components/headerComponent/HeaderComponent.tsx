@@ -6,7 +6,7 @@ export const HeaderComponent = ({ companyName }: HeaderComponentProps) => {
   return (
     <div className='sm:gap-10S flex w-full flex-row items-center justify-center gap-5'>
       <Image
-        alt='temp'
+        alt='logo'
         className='w-14 sm:w-20'
         width={0}
         height={0}
