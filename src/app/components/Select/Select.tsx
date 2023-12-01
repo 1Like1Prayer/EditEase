@@ -1,3 +1,5 @@
+'use client'
+
 import { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { ChevronDown } from '@/app/components/icons/ChevronDown';
@@ -20,7 +22,7 @@ export const Select = ({ options }: SelectProps) => {
   return (
     <Listbox value={selected} onChange={setSelected}>
       <div className='relative w-1/2 justify-self-center'>
-        <Listbox.Button className=' w-full cursor-pointer rounded-lg bg-gray-400 pl-3 text-left shadow-sm'>
+        <Listbox.Button className='button w-full pl-3 text-left'>
           <span className='block truncate'>{selected.title}</span>
           <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
             <ChevronDown />
@@ -32,7 +34,7 @@ export const Select = ({ options }: SelectProps) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Listbox.Options className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-md ring-1 ring-black/5 focus:outline-none sm:text-sm'>
+          <Listbox.Options className='absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-md ring-1 ring-black/5 focus:outline-none sm:text-sm'>
             {options.map((option, personIdx) => (
               <Listbox.Option
                 key={personIdx}
