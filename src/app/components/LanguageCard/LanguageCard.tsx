@@ -8,8 +8,8 @@ export const LanguageCard = () => {
 
   return (
     <div className='card flex flex-row justify-between space-x-2 pt-1'>
-      <div className='w-1/5 text-black'>
-        <div>Select Languages For auto-generated VoiceOver and subtitle.</div>
+      <div className='w-3/5 text-black'>
+        <div>Select Languages For Auto-Generated VoiceOver And Subtitle.</div>
         <u
           className='cursor-pointer text-sm text-gray-500'
           onClick={() => setFullList(!isFullList)}

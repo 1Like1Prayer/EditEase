@@ -2,36 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 231, 231, 231;
-  --background-end-rgb: 231, 231, 231;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    background: #F9F5F6;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 @layer components {
   .card {
-    @apply rounded-md bg-background pb-2 pl-2 pr-2 shadow-sm;
+    @apply rounded-md bg-background pb-2 px-2 pt-2 shadow-sm ;
   }
 
   .button {
-    @apply bg-white cursor-pointer rounded-md p-1 shadow-sm transition duration-200 hover:bg-gray-300;
+    @apply cursor-pointer rounded-md bg-white p-2 shadow-sm transition duration-300 hover:bg-gray-300;
   }
 }

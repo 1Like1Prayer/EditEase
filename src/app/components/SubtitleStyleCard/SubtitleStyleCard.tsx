@@ -6,9 +6,7 @@ import React from 'react';
 export const SubtitleStyleCard = () => {
   return (
     <div className='card space-y-2'>
-      <div className='pt-1 text-black'>
-        <div>Subtitle Style</div>
-      </div>
+      <div className='text-center text-black'>Subtitle Style</div>
       <ButtonGroupSelector
         elementProps={[
           { title: 'None' },

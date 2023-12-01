@@ -27,8 +27,8 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
           key={elementProp.title}
           value={elementProp.title}
           className={({ checked }) =>
-            `button justify-self-start flex w-5/6 flex-row items-center justify-evenly text-sm focus:outline-none
-            ${checked ? 'bg-primary hover:bg-primary/75' : ''}`
+            `button flex flex-row items-center justify-evenly justify-self-center text-xs focus:outline-none sm:w-2/3 sm:text-sm w-full
+            ${checked && 'bg-primary hover:bg-primary/75'}`
           }
         >
           {elementProp.prefixIcon}
