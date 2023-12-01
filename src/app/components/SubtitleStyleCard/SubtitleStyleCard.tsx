@@ -3,10 +3,12 @@ import { BracketsIcon } from '@/app/components/icons/BracketsIcon';
 import { PersonIcon } from '@/app/components/icons/PersonIcon';
 import React from 'react';
 
-export const SubtitleStyle = () => {
+export const SubtitleStyleCard = () => {
   return (
-    <div className='w-1/3 space-y-2 rounded-md bg-[#7A26C1] pb-2 shadow-lg shadow-[#7A26C1]'>
-      <div className='pt-1 text-center text-[##9A9A9A]'>Subtitle Style</div>
+    <div className='card space-y-2'>
+      <div className='pt-1 text-black'>
+        <div>Subtitle Style</div>
+      </div>
       <ButtonGroupSelector
         elementProps={[
           { title: 'None' },
