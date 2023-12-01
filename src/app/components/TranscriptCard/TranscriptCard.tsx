@@ -6,7 +6,7 @@ import React from 'react';
 export const TranscriptCard = () => {
   return (
     <div className='card space-y-2'>
-      <div className='pt-1 text-black'>Transcription</div>
+      <div className='text-black text-center'>Transcription</div>
       <ButtonGroupSelector
         elementProps={[
           { title: 'Original Transcription', suffixIcon: <BracketsIcon /> },
