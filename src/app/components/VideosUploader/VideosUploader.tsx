@@ -1,6 +1,6 @@
 'use client';
 
-import { PlusIcon } from '@/app/icons/PlusIcon';
+import { PlusIcon } from '@/app/components/icons/PlusIcon';
 import { ChangeEvent, useState } from 'react';
 
 interface VideoUploader {
