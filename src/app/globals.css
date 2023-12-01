@@ -16,6 +16,21 @@
   }
 }
 
+::-webkit-scrollbar-track {
+  border-radius: 30px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 30px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background-color: #cdbfff;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -28,10 +43,10 @@ body {
 
 @layer components {
   .card {
-    @apply rounded-md bg-background pb-2 pl-2 pr-2 shadow-sm;
+    @apply bg-background rounded-md pb-2 pl-2 pr-2 shadow-sm;
   }
 
   .button {
-    @apply bg-white cursor-pointer rounded-md p-1 shadow-sm transition duration-200 hover:bg-gray-300;
+    @apply cursor-pointer rounded-md bg-white p-1 shadow-sm transition duration-200 hover:bg-gray-300;
   }
 }
