@@ -3,7 +3,6 @@ import { Select, SelectOptionType } from '@/app/components/Select/Select';
 import {
   AlignCenterVertical,
   AlignEndVertical,
-  AlignRight,
   AlignStartVertical,
   Bold,
   Italic,
@@ -16,13 +15,13 @@ const FONT_OPTIONS: SelectOptionType[] = [
 ];
 
 interface EditSubscriptionDialogProps {
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
 export const EditSubscriptionDialog = ({
-  isOpen,
+  isOpen = true,
 }: EditSubscriptionDialogProps) => {
-  return (
+  return isOpen ? (
     <div className='card bg-gray-400 text-sm'>
       <div className='grid grid-cols-2 gap-2'>
         <div className='card'>
@@ -81,5 +80,7 @@ export const EditSubscriptionDialog = ({
         </div>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
