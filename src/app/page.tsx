@@ -7,6 +7,7 @@ import { LanguageCard } from '@/app/components/LanguageCard/LanguageCard';
 import { BackgroundMusicCard } from '@/app/components/BackgroundMusicCard/BackgroundMusicCard';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 import {VideoUploaderCard} from "@/app/components/VideoUploader/VideoUploaderCard";
+import {EditSubscriptionDialog} from "@/app/components/EditSubscriptionDialog/EditSubscriptionDialog";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <HeaderComponent companyName={'Edit Ease'} />
       <div className='grid w-4/5 grid-cols-2 gap-4'>
         <div className='col-span-2'>
-          <VideoUploaderCard title={'Select / Upload Your Main Videos'}/>
+          <EditSubscriptionDialog isOpen={true}/>
         </div>
         <div className='col-span-2'>
           <VideoUploaderCard title={'Select / Upload Your B-roll`s Clips'}/>
