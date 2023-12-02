@@ -9,10 +9,10 @@ import { TranscriptionStage } from '@/app/components/TranscriptionStage/Transcri
 export default function Home() {
   const isShowing: boolean = useBoundStore((state) => state.isShowing);
   return (
-    <main className='relative min-h-screen py-12'>
+    <main className='min-h-screen py-12'>
       <HeaderComponent companyName={'EditEase'} />
       <div className='grid grid-cols-2 gap-4'>
-        <div >
+        <div className='relative'>
           <Transition
             show={isShowing}
             enter='transition delay-500 duration-200 '

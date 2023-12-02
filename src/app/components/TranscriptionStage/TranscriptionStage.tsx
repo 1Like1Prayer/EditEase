@@ -7,7 +7,7 @@ import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 
 export const TranscriptionStage = () => {
   return (
-    <div className='flex flex-col items-center gap-10 '>
+    <div className='absolute w-full flex flex-col items-center gap-10 '>
       <div className='grid w-4/5 grid-cols-2 gap-4'>
         <SubtitleStyleCard />
         <VoiceOverCard />

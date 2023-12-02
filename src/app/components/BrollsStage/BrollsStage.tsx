@@ -4,7 +4,7 @@ import React from 'react';
 
 export const BrollsStage = () => {
   return (
-    <div className=' flex w-full flex-col items-center gap-10'>
+    <div className='absolute w-full flex flex-col items-center gap-10'>
       <div className=' w-4/5'>
         <TranscriptCard />
       </div>
