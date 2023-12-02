@@ -1,30 +1,53 @@
+'use client';
 import React from 'react';
 import { HeaderComponent } from '@/app/components/headerComponent/HeaderComponent';
-import { TranscriptCard } from '@/app/components/TranscriptCard/TranscriptCard';
-import { SubtitleStyleCard } from '@/app/components/SubtitleStyleCard/SubtitleStyleCard';
-import { VoiceOverCard } from '@/app/components/VoiceOverCard/VoiceOverCard';
-import { LanguageCard } from '@/app/components/LanguageCard/LanguageCard';
-import { BackgroundMusicCard } from '@/app/components/BackgroundMusicCard/BackgroundMusicCard';
-import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
+import { Transition } from '@headlessui/react';
+import { BrollsStage } from '@/app/components/BrollsStage/BrollsStage';
+import { useBoundStore } from '@/app/state/transition-state';
+import { TranscriptionStage } from '@/app/components/TranscriptionStage/TranscriptionStage';
 
 export default function Home() {
+  const isShowing: boolean = useBoundStore((state) => state.isShowing);
   return (
-    <main className=' flex min-h-screen flex-col items-center gap-10 py-12'>
-      <HeaderComponent companyName={'Edit Ease'} />
-      <div className='grid w-4/5 grid-cols-2 gap-4'>
-        <div className='col-span-2'>
-          <TranscriptCard />
+    <main className='relative min-h-screen py-12'>
+      <HeaderComponent companyName={'EditEase'} />
+      <div className='grid grid-cols-2 gap-4'>
+        <div >
+          <Transition
+            show={isShowing}
+            enter='transition delay-500 duration-200 '
+            enterFrom='-translate-x-full'
+            enterTo=' translate-x-0'
+            leave='transition duration-500'
+            leaveFrom=' translate-x-0'
+            leaveTo='-translate-x-full'
+          >
+            <BrollsStage />
+          </Transition>
+          <Transition
+            show={!isShowing}
+            enter='transition delay-500 duration-200'
+            enterFrom=' -translate-x-full'
+            enterTo=' translate-x-0'
+            leave='transition duration-500'
+            leaveFrom=' translate-x-0'
+            leaveTo=' -translate-x-full'
+          >
+            <TranscriptionStage />
+          </Transition>
         </div>
-        <SubtitleStyleCard />
-        <VoiceOverCard />
-        <div className='col-span-2'>
-          <LanguageCard />
-        </div>
-        <div className='col-span-2'>
-          <BackgroundMusicCard />
+        <div className='flex justify-center'>
+          <iframe
+            width='560'
+            height='315'
+            src='https://www.youtube.com/embed/dQw4w9WgXcQ?si=FwphtZAj-UDiEN2h'
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
-      <GenerateButton />
     </main>
   );
 }
