@@ -31,7 +31,7 @@
 
 @layer components {
   .card {
-    @apply bg-background rounded-md pb-2 px-2 pt-2 shadow-sm ;
+    @apply bg-card rounded-md pb-2 px-2 pt-2 shadow-sm ;
   }
 
   .button {

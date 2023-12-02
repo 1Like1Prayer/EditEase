@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#dedede',
+        card: '#dedede',
         primary: '#cdbfff',
         secondary: '#ff8491',
         black: '#393c3d',
