@@ -65,6 +65,7 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
                 <>
                   <video
                     autoPlay
+                    loop
                     className={`relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
                       isImageSelected(file) ? 'opacity-30' : ''
                     }`}
