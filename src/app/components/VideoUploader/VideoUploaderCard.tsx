@@ -51,11 +51,14 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
                 isImageSelected(file) ? unselectImage(file) : selectImage(file)
               }
             >
-              {file.type == 'image' ? (
-                <img
+              {file.type.includes('image') ? (
+                <Image
+                  alt={'image'}
                   className={`h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
                     isImageSelected(file) ? 'opacity-30' : ''
                   }`}
+                  width={0}
+                  height={0}
                   src={(file && URL.createObjectURL(file)) || ''}
                 />
               ) : (
