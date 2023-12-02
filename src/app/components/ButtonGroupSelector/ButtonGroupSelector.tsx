@@ -15,7 +15,7 @@ interface ButtonGroupProps {
 }
 
 export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<string>(elementProps?.[0].title);
   return (
     <RadioGroup
       className='grid grid-cols-2 gap-2'
