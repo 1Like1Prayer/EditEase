@@ -8,9 +8,31 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    background: #F9F5F6;
+    @apply text-black
+  }
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 30px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 30px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background-color: #cdbfff;
+}
+
 @layer components {
   .card {
-    @apply rounded-md bg-background pb-2 px-2 pt-2 shadow-sm ;
+    @apply bg-background rounded-md pb-2 px-2 pt-2 shadow-sm ;
   }
 
   .button {
