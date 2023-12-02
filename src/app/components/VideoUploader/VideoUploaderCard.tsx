@@ -3,6 +3,7 @@
 import { PlusIcon } from '@/app/components/icons/PlusIcon';
 import { ChangeEvent, useRef, useState } from 'react';
 import Image from 'next/image';
+import { PlayIcon } from '@/app/components/icons/PlayIcon';
 
 interface VideoUploaderCardProps {
   title: string;
@@ -43,22 +44,34 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
           {Array.from(imagesSet.values()).map((file, index) => (
             <div
               key={index}
-              className={'relative cursor-pointer snap-start sm:h-20 sm:w-20 flex-shrink-0'}
+              className={
+                'relative flex-shrink-0 cursor-pointer snap-start sm:h-20 sm:w-20'
+              }
               onClick={() =>
                 isImageSelected(file) ? unselectImage(file) : selectImage(file)
               }
             >
-              <img
-                className={`h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
-                  isImageSelected(file) ? 'opacity-30' : ''
-                }`}
-                src={(file && URL.createObjectURL(file)) || ''}
-              />
-              {/*<div className={`bg-black h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${*/}
-              {/*    isImageSelected(file) ? 'opacity-30' : ''*/}
-              {/*}`}>*/}
-              {/*  idan*/}
-              {/*</div>*/}
+              {file.type == 'image' ? (
+                <img
+                  className={`h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
+                    isImageSelected(file) ? 'opacity-30' : ''
+                  }`}
+                  src={(file && URL.createObjectURL(file)) || ''}
+                />
+              ) : (
+                <>
+                  <video
+                    autoPlay
+                    className={`relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
+                      isImageSelected(file) ? 'opacity-30' : ''
+                    }`}
+                    src={(file && URL.createObjectURL(file)) || ''}
+                  />
+                  <div className='absolute top-0'>
+                    <PlayIcon />
+                  </div>
+                </>
+              )}
               {isImageSelected(file) ? (
                 <div className='absolute left-1/2 top-1/2 text-center text-amber-500'>
                   {imagesOrder.findIndex((image) => image == file) + 1}
@@ -71,7 +84,7 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
         </div>
         <label
           onClick={inputRef?.current?.click}
-          className='button flex w-full cursor-pointer items-center justify-center bg-gray-200 transition hover:bg-gray-300 sm:h-20 sm:w-20 flex-shrink-0'
+          className='button flex w-full flex-shrink-0 cursor-pointer items-center justify-center bg-gray-200 transition hover:bg-gray-300 sm:h-20 sm:w-20'
         >
           <div>
             <PlusIcon />
