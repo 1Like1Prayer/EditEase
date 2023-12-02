@@ -10,9 +10,9 @@ import {VideoUploaderCard} from "@/app/components/VideoUploader/VideoUploaderCar
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-around space-y-10 py-12'>
+    <main className=' flex min-h-screen flex-col items-center gap-10 py-12'>
       <HeaderComponent companyName={'Edit Ease'} />
-      <div className='grid w-4/5 grid-cols-2 gap-2'>
+      <div className='grid w-4/5 grid-cols-2 gap-4'>
         <div>
           <VideoUploaderCard />
         </div>
@@ -22,16 +22,12 @@ export default function Home() {
         <div className='col-span-2'>
           <TranscriptCard />
         </div>
-        <div>
-          <SubtitleStyleCard />
-        </div>
-        <div>
-          <VoiceOverCard />
-        </div>
+        <SubtitleStyleCard />
+        <VoiceOverCard />
         <div className='col-span-2'>
           <LanguageCard />
         </div>
-        <div className=''>
+        <div className='col-span-2'>
           <BackgroundMusicCard />
         </div>
       </div>
