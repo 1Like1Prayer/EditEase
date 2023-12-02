@@ -1,56 +1,89 @@
 'use client';
 
 import { PlusIcon } from '@/app/components/icons/PlusIcon';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import Image from 'next/image';
 
-export const VideoUploaderCard = () => {
-  const [files, setFiles] = useState<string>();
+interface VideoUploaderCardProps {
+  title: string;
+}
+
+export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
+  const [imagesSet, setImagesSet] = useState<File[]>([]);
+  const [imagesOrder, setImagesOrder] = useState<File[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleUploadImages = (event: ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
     if (FileReader && fileList && fileList.length) {
-      const fr = new FileReader();
-      fr.onload = function () {
-        setFiles(fr.result as string);
-      };
-      fr.readAsDataURL(fileList[0]);
+      const imageSelection: File[] = Array.from(fileList);
+
+      setImagesSet((prev) => prev.concat(imageSelection));
     }
   };
 
+  // TODO: try to get this function more efficient (maybe use map with the object as a key and index as value)
+  const isImageSelected = (img: File): boolean => {
+    return imagesOrder.findIndex((image) => image === img) !== -1;
+  };
+
+  const selectImage = (selectedImage: File) => {
+    setImagesOrder((prev) => prev.concat(selectedImage));
+  };
+
+  const unselectImage = (selectedImage: File) => {
+    setImagesOrder((prev) => prev.filter((image) => image !== selectedImage));
+  };
+
   return (
-    <div className={`card flex flex-row justify-between p-2 gap-2`}>
-      <div className={`flex flex-row p-2 gap-2 overflow-x-auto`}>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-        <div className={'bg-blue-300 p-5'}></div>
-      </div>
-      <div className='button bg-gray-200 p-6 transition hover:bg-gray-300'>
-        <label htmlFor='upload'>
-          <div className='flex cursor-pointer flex-col items-center'>
+    <div className={'card space-y-2'}>
+      <div className='text-center text-black'>{title}</div>
+      <div className={`flex flex-row justify-between gap-2 p-2`}>
+        <div className={`flex snap-x flex-row gap-2 overflow-x-auto`}>
+          {Array.from(imagesSet.values()).map((file, index) => (
+            <div
+              key={index}
+              className={'relative cursor-pointer snap-start sm:h-20 sm:w-20 flex-shrink-0'}
+              onClick={() =>
+                isImageSelected(file) ? unselectImage(file) : selectImage(file)
+              }
+            >
+              <img
+                className={`h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
+                  isImageSelected(file) ? 'opacity-30' : ''
+                }`}
+                src={(file && URL.createObjectURL(file)) || ''}
+              />
+              {/*<div className={`bg-black h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${*/}
+              {/*    isImageSelected(file) ? 'opacity-30' : ''*/}
+              {/*}`}>*/}
+              {/*  idan*/}
+              {/*</div>*/}
+              {isImageSelected(file) ? (
+                <div className='absolute left-1/2 top-1/2 text-center text-amber-500'>
+                  {imagesOrder.findIndex((image) => image == file) + 1}
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
+          ))}
+        </div>
+        <label
+          onClick={inputRef?.current?.click}
+          className='button flex w-full cursor-pointer items-center justify-center bg-gray-200 transition hover:bg-gray-300 sm:h-20 sm:w-20 flex-shrink-0'
+        >
+          <div>
             <PlusIcon />
           </div>
+          <input
+            type='file'
+            ref={inputRef}
+            className={'hidden'}
+            onChange={handleUploadImages}
+            multiple
+          />
         </label>
-        <input
-          id='upload'
-          type='file'
-          className={'hidden'}
-          onChange={handleUploadImages}
-        />
       </div>
     </div>
   );
