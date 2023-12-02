@@ -14,8 +14,11 @@ export default function Home() {
     <main className=' flex min-h-screen flex-col items-center gap-10 py-12'>
       <HeaderComponent companyName={'Edit Ease'} />
       <div className='grid w-4/5 grid-cols-2 gap-4'>
-        <div className='col-span-2'>
+        <div>
           <EditSubscriptionDialog isOpen={true}/>
+        </div>
+        <div className='col-span-2'>
+          <VideoUploaderCard title={'Select / Upload Your Main Videos'}/>
         </div>
         <div className='col-span-2'>
           <VideoUploaderCard title={'Select / Upload Your B-roll`s Clips'}/>

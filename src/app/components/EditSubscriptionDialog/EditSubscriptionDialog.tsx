@@ -7,6 +7,7 @@ import {
   Bold,
   Italic,
 } from 'lucide-react';
+import { ColourPicker } from '@/app/components/ColourPicker/ColourPicker';
 
 const FONT_OPTIONS: SelectOptionType[] = [
   { title: 'Futura' },
@@ -26,10 +27,15 @@ export const EditSubscriptionDialog = ({
       <div className='grid grid-cols-2 gap-2'>
         <div className='card'>
           <div>Background Colour</div>
-          <div></div>
+          <div>
+            <ColourPicker />
+          </div>
         </div>
         <div className='card'>
           <div>Text Colour</div>
+          <div>
+            <ColourPicker />
+          </div>
           <div></div>
         </div>
         <div className='card col-span-2 flex flex-row items-center justify-between'>
