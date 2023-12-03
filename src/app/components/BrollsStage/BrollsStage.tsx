@@ -1,14 +1,17 @@
 import { TranscriptCard } from '@/app/components/TranscriptCard/TranscriptCard';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 import React from 'react';
+import { VideoUploaderCard } from '@/app/components/VideoUploader/VideoUploaderCard';
 
 export const BrollsStage = () => {
   return (
-    <div className='absolute w-full flex flex-col items-center gap-10'>
-      <div className=' w-4/5'>
+    <div className='absolute flex w-full flex-col items-center gap-10'>
+      <div className='w-4/5 space-y-4'>
         <TranscriptCard />
+        <VideoUploaderCard title={'Select / Upload Your Main Videos'} />
+        <VideoUploaderCard title={'Select / Upload Your B-roll`s Clips'} />
       </div>
-      <GenerateButton />
+      <GenerateButton buttonText={'Merge Videos'} isNextStep={true} />
     </div>
   );
 };
