@@ -4,7 +4,7 @@ interface HeaderComponentProps {
 }
 export const HeaderComponent = ({ companyName }: HeaderComponentProps) => {
   return (
-    <div className='sm:gap-10S flex w-full flex-row items-center justify-center gap-5'>
+    <div className='flex w-full flex-row items-center justify-center gap-5 pb-12'>
       <Image
         alt='logo'
         className='w-14 sm:w-20'

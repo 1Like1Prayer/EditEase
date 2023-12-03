@@ -11,7 +11,6 @@ interface ElementsProps {
 
 interface ButtonGroupProps {
   elementProps: ElementsProps[];
-  onSelect?: (index: number) => void;
 }
 
 export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
@@ -27,7 +26,7 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
           key={elementProp.title}
           value={elementProp.title}
           className={({ checked }) =>
-            `button flex flex-row items-center justify-evenly justify-self-center text-xs focus:outline-none sm:w-2/3 sm:text-sm w-full
+            `button flex w-full flex-row items-center justify-evenly justify-self-center text-xs focus:outline-none sm:w-2/3 sm:text-sm
             ${checked && 'bg-primary hover:bg-primary/75'}`
           }
         >
