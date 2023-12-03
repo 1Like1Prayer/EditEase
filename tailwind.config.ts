@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#dedede',
+        card: '#dedede',
         primary: '#cdbfff',
         secondary: '#ff8491',
         black: '#393c3d',
-        white: '#e7e7e7',
+        white: '#f4f4f4',
       },
     },
   },
