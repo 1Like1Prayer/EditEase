@@ -4,36 +4,47 @@ import { PlusIcon } from '@/app/components/icons/PlusIcon';
 import { ChangeEvent, useRef, useState } from 'react';
 import Image from 'next/image';
 import { PlayIcon } from '@/app/components/icons/PlayIcon';
+import { useS3PutObject } from '@/app/hooks/useS3Uploader/useS3PutObject';
+import { useVideoStore, VideosSlice } from '@/app/state/videos-state';
+import { v4 as uuidv4 } from 'uuid';
 
 interface VideoUploaderCardProps {
   title: string;
+  selectedFiles: VideosSlice['mainVideosIds'];
+  onSelectFile: VideosSlice['addMainVideos'];
+  onUnselectFile: VideosSlice['removeMainVideos'];
 }
 
-export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
+export const VideoUploaderCard = ({
+  title,
+  selectedFiles,
+  onSelectFile,
+  onUnselectFile,
+}: VideoUploaderCardProps) => {
   const [imagesSet, setImagesSet] = useState<File[]>([]);
-  const [imagesOrder, setImagesOrder] = useState<File[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLInputElement>(null);
 
   const handleUploadImages = (event: ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
     if (FileReader && fileList && fileList.length) {
-      const imageSelection: File[] = Array.from(fileList);
-
-      setImagesSet((prev) => prev.concat(imageSelection));
+      const newFiles: File[] = Array.from(fileList).map(
+        (file) => new File([file], uuidv4(), { type: file.type }),
+      );
+      setImagesSet((prev) => prev.concat(newFiles));
     }
   };
 
   // TODO: try to get this function more efficient (maybe use map with the object as a key and index as value)
-  const isImageSelected = (img: File): boolean => {
-    return imagesOrder.findIndex((image) => image === img) !== -1;
+  const isImageSelected = (file: File): boolean => {
+    return selectedFiles.findIndex((f) => f.name === file.name) !== -1;
   };
 
-  const selectImage = (selectedImage: File) => {
-    setImagesOrder((prev) => prev.concat(selectedImage));
+  const selectImage = (file: File) => {
+    onSelectFile(file);
   };
 
-  const unselectImage = (selectedImage: File) => {
-    setImagesOrder((prev) => prev.filter((image) => image !== selectedImage));
+  const unselectImage = (file: File) => {
+    onUnselectFile(file.name);
   };
 
   return (
@@ -66,6 +77,7 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
                   <video
                     autoPlay
                     loop
+                    muted
                     className={`relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-20 ${
                       isImageSelected(file) ? 'opacity-30' : ''
                     }`}
@@ -78,7 +90,7 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
               )}
               {isImageSelected(file) ? (
                 <div className='absolute left-1/2 top-1/2 text-center text-amber-500'>
-                  {imagesOrder.findIndex((image) => image == file) + 1}
+                  {selectedFiles.findIndex((image) => image == file) + 1}
                 </div>
               ) : (
                 ''
@@ -87,7 +99,7 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
           ))}
         </div>
         <label
-          onClick={inputRef?.current?.click}
+          onClick={buttonRef?.current?.click}
           className='button flex w-full flex-shrink-0 cursor-pointer items-center justify-center bg-gray-200 transition hover:bg-gray-300 sm:h-20 sm:w-20'
         >
           <div>
@@ -95,7 +107,7 @@ export const VideoUploaderCard = ({ title }: VideoUploaderCardProps) => {
           </div>
           <input
             type='file'
-            ref={inputRef}
+            ref={buttonRef}
             className={'hidden'}
             onChange={handleUploadImages}
             multiple
