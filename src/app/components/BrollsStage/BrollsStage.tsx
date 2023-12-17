@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { TranscriptCard } from '@/app/components/TranscriptCard/TranscriptCard';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 import { VideoUploaderCard } from '@/app/components/VideoUploader/VideoUploaderCard';
@@ -10,7 +10,9 @@ import {
 import { useVideoStore } from '@/app/state/videos-state';
 import { useBoundStore } from '@/app/state/transition-state';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import axios from "axios";
+import axios from 'axios';
+import { usePixelVideo } from '@/app/hooks/pixel/usePixelVideo';
+import {PixelPickerCard} from "@/app/components/PixelPicker/PixelPickerCard";
 
 export const BrollsStage = () => {
   const activateTransition = useBoundStore((state) => state.activateTransition);
@@ -26,7 +28,8 @@ export const BrollsStage = () => {
     removeBrollVideos,
   } = useVideoStore();
 
-  const {mutate: sendToApi} = useMutation({
+
+  const { mutate: sendToApi } = useMutation({
     mutationFn: (body: any) => {
       return axios.post('http://api.edit-ease.com/videos', body);
     },
@@ -71,15 +74,7 @@ export const BrollsStage = () => {
         {fetchingHeadVideo && (
           <span className='loading loading-ring loading-md'></span>
         )}
-        <VideoUploaderCard
-          title={'Select / Upload Your B-roll`s Clips'}
-          selectedFiles={brollVideosIds}
-          onSelectFile={addBrollVideos}
-          onUnselectFile={removeBrollVideos}
-        />
-        {fetchingBrollVideo && (
-          <span className='loading loading-ring loading-md'></span>
-        )}
+        <PixelPickerCard/>
         <TranscriptCard />
       </div>
       <GenerateButton buttonText={'Merge Videos'} onClick={onClickButton} />
