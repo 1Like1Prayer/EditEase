@@ -2,19 +2,35 @@
 
 import {
   PixelVideoResponseType,
+  PixelVideoType,
   usePixelVideo,
 } from '@/app/hooks/pixel/usePixelVideo';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { mapVideoMatchToMainVideo } from '@/app/utils/matchMainVideoToBrolls';
+import { useVideoStore } from '@/app/state/videos-state';
 
 export const PixelPickerCard = () => {
   const [searchText, setSearchText] = useState('');
   const [videos, setVideos] = useState<
     PixelVideoResponseType['data']['videos']
   >([]);
+  const { addBrollVideos, brollVideos } = useVideoStore();
+
   const { data, refetch, refetchNextPage, isFetching } = usePixelVideo({
     searchText,
   });
+
+  const addBroll = (
+    video: PixelVideoType,
+    videoQuality: PixelVideoType['video_files'][0],
+  ) => {
+    addBrollVideos({
+      pixelId: video.id,
+      qualityId: videoQuality.id,
+      link: videoQuality.link,
+    });
+  };
 
   const onSubmit = () => {
     setVideos([]);
@@ -44,23 +60,35 @@ export const PixelPickerCard = () => {
         next={refetchNextPage}
         hasMore={!!data?.data.next_page}
         loader={
-          <span className='loading loading-ring loading-md justify-center'></span>
+          <span className='loading loading-dots loading-md justify-center'></span>
         }
         height={300}
         dataLength={videos.length}
       >
         <div className='grid grid-cols-5 gap-2'>
-          {videos.map((video) => (
+          {mapVideoMatchToMainVideo(videos).map((video) => (
             <video
-              key={video.video_files[2].link}
+              key={video.video_files[0].link}
               muted
               loop
+              onClick={() => addBroll(video, video.video_files[0])}
               className={`sm:h-30 relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-fit`}
-              src={video.video_files[2].link}
+              src={video.video_files[0].link}
             />
           ))}
         </div>
       </InfiniteScroll>
+      <div className='grid grid-cols-5 gap-2'>
+        {brollVideos.map((broll) => (
+          <video
+            key={broll.link}
+            muted
+            loop
+            className={`sm:h-30 relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-fit`}
+            src={broll.link}
+          />
+        ))}
+      </div>
     </div>
   );
 };

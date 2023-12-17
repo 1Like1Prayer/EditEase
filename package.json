@@ -22,6 +22,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-infinite-scroll-component": "^6.1.0",
+    "sharp": "^0.33.1",
     "uuid": "^9.0.1",
     "zukeeper": "^1.0.2",
     "zustand": "^4.4.7"

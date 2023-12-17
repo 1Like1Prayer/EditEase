@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface VideoUploaderCardProps {
   title: string;
-  selectedFiles: VideosSlice['mainVideosIds'];
+  selectedFiles: VideosSlice['mainVideo'];
   onSelectFile: VideosSlice['addMainVideos'];
   onUnselectFile: VideosSlice['removeMainVideos'];
 }
@@ -30,13 +30,14 @@ export const VideoUploaderCard = ({
       const newFiles: File[] = Array.from(fileList).map(
         (file) => new File([file], uuidv4(), { type: file.type }),
       );
-      setImagesSet((prev) => prev.concat(newFiles));
+      setImagesSet((prev) => newFiles);
+      selectImage(fileList[0])
     }
   };
 
   // TODO: try to get this function more efficient (maybe use map with the object as a key and index as value)
   const isImageSelected = (file: File): boolean => {
-    return selectedFiles.findIndex((f) => f.name === file.name) !== -1;
+    return selectedFiles == file
   };
 
   const selectImage = (file: File) => {
@@ -88,13 +89,14 @@ export const VideoUploaderCard = ({
                   </div>
                 </>
               )}
-              {isImageSelected(file) ? (
-                <div className='absolute left-1/2 top-1/2 text-center text-amber-500'>
-                  {selectedFiles.findIndex((image) => image == file) + 1}
-                </div>
-              ) : (
-                ''
-              )}
+              {/*{isImageSelected(file) ? (*/}
+              {/*  <div className='absolute left-1/2 top-1/2 text-center text-amber-500'>*/}
+              {/*    {selectedFiles.findIndex((image) => image == file) + 1}*/}
+              {/*    1*/}
+              {/*  </div>*/}
+              {/*) : (*/}
+              {/*  ''*/}
+              {/*)}*/}
             </div>
           ))}
         </div>
@@ -110,7 +112,6 @@ export const VideoUploaderCard = ({
             ref={buttonRef}
             className={'hidden'}
             onChange={handleUploadImages}
-            multiple
           />
         </label>
       </div>

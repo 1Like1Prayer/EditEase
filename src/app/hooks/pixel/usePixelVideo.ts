@@ -4,24 +4,26 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+export interface PixelVideoType {
+  id: number;
+  width: number;
+  height: number;
+  video_files: {
+    id: number;
+    quality: string;
+    file_type: string;
+    width: number;
+    height: number;
+    link: string;
+  }[];
+}
+
 export interface PixelVideoResponseType {
   data: {
     page: number;
     url: string;
     next_page: string;
-    videos: {
-      id: number;
-      width: number;
-      height: number;
-      video_files: {
-        id: number;
-        quality: string;
-        file_type: string;
-        width: number;
-        height: number;
-        link: string;
-      }[];
-    }[];
+    videos: PixelVideoType[];
   };
 }
 
@@ -37,8 +39,8 @@ export const usePixelVideo = ({ searchText }: UsePixelVideoProps) => {
       axios.get(
         `https://api.pexels.com/videos/${
           searchText
-            ? `search?query=${searchText}&page=${page}`
-            : `popular?page=${page}`
+            ? `search?query=${searchText}&page=${page}&size=medium&orientation=landscape`
+            : `popular?page=${page}&size=medium&orientation=landscape`
         }`,
         {
           headers: {

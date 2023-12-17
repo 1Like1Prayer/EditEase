@@ -1,36 +1,44 @@
 import { create, StateCreator } from 'zustand';
 
+interface BrollVideoType {
+  pixelId: number;
+  qualityId: number;
+  link: string;
+}
+
 export interface VideosSlice {
-  mainVideosIds: File[];
-  brollVideosIds: File[];
+  mainVideo: File | null;
   addMainVideos: (file: File) => void;
   removeMainVideos: (fileName: string) => void;
-  addBrollVideos: (file: File) => void;
-  removeBrollVideos: (fileName: string) => void;
+  brollVideos: BrollVideoType[];
+  addBrollVideos: (broll: BrollVideoType) => void;
+  removeBrollVideos: (pixelId: BrollVideoType['pixelId']) => void;
 }
 
 const createVideosSlice: StateCreator<VideosSlice> = (setState) => ({
-  mainVideosIds: [],
-  brollVideosIds: [],
+  mainVideo: null,
+  brollVideos: [],
   addMainVideos: (file: File) =>
     setState((state) => ({
       ...state,
-      mainVideosIds: [...state.mainVideosIds, file],
+      mainVideo: file,
     })),
-  removeMainVideos: (fileName: string) =>
+  removeMainVideos: () =>
     setState((state) => ({
       ...state,
-      mainVideosIds: state.mainVideosIds.filter((file) => file.name !== fileName),
+      mainVideo: null,
     })),
-  addBrollVideos: (id: File) =>
+  addBrollVideos: (broll: BrollVideoType) =>
     setState((state) => ({
       ...state,
-      brollVideosIds: [...state.brollVideosIds, id],
+      brollVideos: [...state.brollVideos, broll],
     })),
-  removeBrollVideos: (fileName: string) =>
+  removeBrollVideos: (pixelId: BrollVideoType['pixelId']) =>
     setState((state) => ({
       ...state,
-      brollVideosIds: state.brollVideosIds.filter((file) => file.name !== fileName),
+      brollVideos: state.brollVideos.filter(
+        (broll) => broll.pixelId !== pixelId,
+      ),
     })),
 });
 
