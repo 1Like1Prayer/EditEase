@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 
 interface BrollVideoType {
-  pixelId: number;
+  pexelId: number;
   qualityId: number;
   link: string;
 }
@@ -12,7 +12,7 @@ export interface VideosSlice {
   removeMainVideos: (fileName: string) => void;
   brollVideos: BrollVideoType[];
   addBrollVideos: (broll: BrollVideoType) => void;
-  removeBrollVideos: (pixelId: BrollVideoType['pixelId']) => void;
+  removeBrollVideos: (pexelId: BrollVideoType['pexelId']) => void;
 }
 
 const createVideosSlice: StateCreator<VideosSlice> = (setState) => ({
@@ -33,11 +33,11 @@ const createVideosSlice: StateCreator<VideosSlice> = (setState) => ({
       ...state,
       brollVideos: [...state.brollVideos, broll],
     })),
-  removeBrollVideos: (pixelId: BrollVideoType['pixelId']) =>
+  removeBrollVideos: (pexelId: BrollVideoType['pexelId']) =>
     setState((state) => ({
       ...state,
       brollVideos: state.brollVideos.filter(
-        (broll) => broll.pixelId !== pixelId,
+        (broll) => broll.pexelId !== pexelId,
       ),
     })),
 });

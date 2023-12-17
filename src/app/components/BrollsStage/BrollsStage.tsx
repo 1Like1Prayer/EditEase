@@ -10,7 +10,7 @@ import { useVideoStore } from '@/app/state/videos-state';
 import { useBoundStore } from '@/app/state/transition-state';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { PixelPickerCard } from '@/app/components/PixelPicker/PixelPickerCard';
+import { PexelsVideoPickerCard } from '@/app/components/PexelsVideoPickerCard/PexelsVideoPickerCard';
 
 export const BrollsStage = () => {
   const activateTransition = useBoundStore((state) => state.activateTransition);
@@ -45,7 +45,7 @@ export const BrollsStage = () => {
         transitions: [],
         texts: [],
         brolls: brollVideos.map((broll) => ({
-          pexel_id: broll.pixelId,
+          pexel_id: broll.pexelId,
           pexel_quality_id: broll.qualityId,
           source_video_id: mainVideo.name,
           pexel_video_url: '',
@@ -78,7 +78,7 @@ export const BrollsStage = () => {
         {fetchingHeadVideo && (
           <span className='loading loading-ring loading-md'></span>
         )}
-        <PixelPickerCard />
+        <PexelsVideoPickerCard />
         <TranscriptCard />
       </div>
       <GenerateButton buttonText={'Merge Videos'} onClick={onClickButton} />

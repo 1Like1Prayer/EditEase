@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export interface PixelVideoType {
+export interface PexelsVideoType {
   id: number;
   width: number;
   height: number;
@@ -18,23 +18,23 @@ export interface PixelVideoType {
   }[];
 }
 
-export interface PixelVideoResponseType {
+export interface PexelsVideoResponseType {
   data: {
     page: number;
     url: string;
     next_page: string;
-    videos: PixelVideoType[];
+    videos: PexelsVideoType[];
   };
 }
 
-interface UsePixelVideoProps {
+interface UsePexelsVideoProps {
   searchText?: string;
 }
 
-export const usePixelVideo = ({ searchText }: UsePixelVideoProps) => {
+export const usePexelsVideo = ({ searchText }: UsePexelsVideoProps) => {
   const [page, setPage] = useState(1);
-  const { refetch, ...result } = useQuery<PixelVideoResponseType>({
-    queryKey: ['pixelQuery'],
+  const { refetch, ...result } = useQuery<PexelsVideoResponseType>({
+    queryKey: ['pexelsQuery'],
     queryFn: () =>
       axios.get(
         `https://api.pexels.com/videos/${

@@ -1,32 +1,32 @@
 'use client';
 
 import {
-  PixelVideoResponseType,
-  PixelVideoType,
-  usePixelVideo,
-} from '@/app/hooks/pixel/usePixelVideo';
+  PexelsVideoResponseType,
+  PexelsVideoType,
+  usePexelsVideo,
+} from '@/app/hooks/pexels/usePexelsVideo';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { mapVideoMatchToMainVideo } from '@/app/utils/matchMainVideoToBrolls';
 import { useVideoStore } from '@/app/state/videos-state';
 
-export const PixelPickerCard = () => {
+export const PexelsVideoPickerCard = () => {
   const [searchText, setSearchText] = useState('');
   const [videos, setVideos] = useState<
-    PixelVideoResponseType['data']['videos']
+    PexelsVideoResponseType['data']['videos']
   >([]);
   const { addBrollVideos, brollVideos } = useVideoStore();
 
-  const { data, refetch, refetchNextPage, isFetching } = usePixelVideo({
+  const { data, refetch, refetchNextPage, isFetching } = usePexelsVideo({
     searchText,
   });
 
   const addBroll = (
-    video: PixelVideoType,
-    videoQuality: PixelVideoType['video_files'][0],
+    video: PexelsVideoType,
+    videoQuality: PexelsVideoType['video_files'][0],
   ) => {
     addBrollVideos({
-      pixelId: video.id,
+      pexelId: video.id,
       qualityId: videoQuality.id,
       link: videoQuality.link,
     });
