@@ -27,8 +27,8 @@ export const BrollsStage = () => {
 
   const onClickButton = async () => {
     if (mainVideo) {
-      setFetchingHeadVideo(true);
-      await upload([mainVideo]).then(() => setFetchingHeadVideo(false));
+      // setFetchingHeadVideo(true);
+      // await upload([mainVideo]).then(() => setFetchingHeadVideo(false));
 
       const y = {
         name: 'My_beautiful_video_idan',
