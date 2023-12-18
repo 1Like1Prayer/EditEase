@@ -19,7 +19,7 @@ interface EditSubscriptionDialogProps {
   isOpen?: boolean;
 }
 
-export const EditSubscriptionDialog = ({
+export const EditWordDialog = ({
   isOpen = true,
 }: EditSubscriptionDialogProps) => {
   return isOpen ? (

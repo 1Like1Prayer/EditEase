@@ -11,9 +11,13 @@ interface ElementsProps {
 
 interface ButtonGroupProps {
   elementProps: ElementsProps[];
+  setState?: () => void;
 }
 
-export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
+export const ButtonGroupSelector = ({
+  elementProps,
+  setState,
+}: ButtonGroupProps) => {
   const [selected, setSelected] = useState<string>(elementProps?.[0].title);
   return (
     <RadioGroup
@@ -26,7 +30,7 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
           key={elementProp.title}
           value={elementProp.title}
           className={({ checked }) =>
-            `button flex w-full flex-row items-center justify-evenly justify-self-center text-xs focus:outline-none sm:w-2/3 sm:text-sm
+            `button flex items-center justify-evenly justify-self-center text-center text-xs focus:outline-none sm:w-2/3 sm:text-sm
             ${checked && 'bg-primary hover:bg-primary/75'}`
           }
         >

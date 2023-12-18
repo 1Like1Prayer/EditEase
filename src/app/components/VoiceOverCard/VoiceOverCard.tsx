@@ -9,13 +9,11 @@ const VoiceOptions: SelectOptionType[] = [
   { title: 'Mia, Female' },
 ];
 
-export const VoiceOverCard = () => {
-  return (
-    <div className='card space-y-2'>
-      <div className='text-center text-black'>Voice Over</div>
-      <ButtonGroupSelector elementProps={[{ title: 'Yes' }, { title: 'No' }]} />
-      <div className='text-center text-black'>Choose Voice</div>
-      <Select options={VoiceOptions} />
-    </div>
-  );
-};
+export const VoiceOverCard = () => (
+  <div className='card space-y-2'>
+    <div className='text-center text-black'>Voice Over</div>
+    <ButtonGroupSelector elementProps={[{ title: 'Yes' }, { title: 'No' }]} />
+    <div className='text-center text-black'>Choose Voice</div>
+    <Select options={VoiceOptions} />
+  </div>
+);

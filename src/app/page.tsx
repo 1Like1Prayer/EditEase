@@ -3,15 +3,15 @@ import React from 'react';
 import { HeaderComponent } from '@/app/components/headerComponent/HeaderComponent';
 import { Transition } from '@headlessui/react';
 import { BrollsStage } from '@/app/components/BrollsStage/BrollsStage';
-import { useBoundStore } from '@/app/state/transition-state';
 import { TranscriptionStage } from '@/app/components/TranscriptionStage/TranscriptionStage';
+import { useBoundStore } from './state/state';
 
 export default function Home() {
   const isShowing: boolean = useBoundStore((state) => state.isShowing);
   return (
     <main className='min-h-screen py-12'>
       <HeaderComponent companyName={'EditEase'} />
-      <div className='grid grid-cols-2 gap-4'>
+      <div className='grid grid-cols-2'>
         <div className='relative'>
           <Transition
             show={isShowing}
@@ -42,7 +42,6 @@ export default function Home() {
             height='315'
             src='https://www.youtube.com/embed/dQw4w9WgXcQ?si=FwphtZAj-UDiEN2h'
             title='YouTube video player'
-            frameBorder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
             allowFullScreen
           ></iframe>

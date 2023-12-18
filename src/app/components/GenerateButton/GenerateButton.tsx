@@ -1,5 +1,6 @@
+import { useBoundStore } from '@/app/state/state';
 import React from 'react';
-import { useBoundStore } from '@/app/state/transition-state';
+
 
 interface GenerateButtonInterface {
   buttonText: string;
