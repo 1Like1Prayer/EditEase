@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 import { EditSubscriptionDialog } from '@/app/components/EditSubscriptionDialog/EditSubscriptionDialog';
 import { useBoundStore } from '@/app/state/transition-state';
+import { BrollsEditCard } from '@/app/components/BrollsEditCard/BrollsEditCard';
 
 export const TranscriptionStage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,6 +19,9 @@ export const TranscriptionStage = () => {
         <VoiceOverCard />
         <div className='col-span-2'>
           <LanguageCard />
+        </div>
+        <div className='col-span-2'>
+          <BrollsEditCard />
         </div>
         <div className='col-span-2'>
           <BackgroundMusicCard />

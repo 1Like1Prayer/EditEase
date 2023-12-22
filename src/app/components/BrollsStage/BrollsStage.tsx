@@ -64,6 +64,8 @@ export const BrollsStage = () => {
     } else {
       alert('upload your main video first');
     }
+    activateTransition();
+
   };
 
   return (

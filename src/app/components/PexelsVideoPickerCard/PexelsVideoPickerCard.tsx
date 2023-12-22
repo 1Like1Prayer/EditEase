@@ -79,12 +79,12 @@ export const PexelsVideoPickerCard = () => {
         </div>
       </InfiniteScroll>
       <div className='grid grid-cols-5 gap-2'>
-        {brollVideos.map((broll) => (
+        {Array.from(brollVideos.values()).map((broll) => (
           <video
             key={broll.link}
             muted
             loop
-            className={`sm:h-30 relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-fit`}
+            className={`sm:h-30 sm:w-fit relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30`}
             src={broll.link}
           />
         ))}
