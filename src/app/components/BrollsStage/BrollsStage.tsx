@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { TranscriptCard } from '@/app/components/TranscriptCard/TranscriptCard';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 import { VideoUploaderCard } from '@/app/components/VideoUploader/VideoUploaderCard';
-import {getFileExtension, useS3PutObject} from '@/app/hooks/useS3Uploader/useS3PutObject';
+import {
+  getFileExtension,
+  useS3PutObject,
+} from '@/app/hooks/useS3Uploader/useS3PutObject';
 import { useVideoStore } from '@/app/state/videos-state';
 import { useBoundStore } from '@/app/state/transition-state';
 import { useMutation } from '@tanstack/react-query';
@@ -46,7 +49,9 @@ export const BrollsStage = () => {
 
       const createVideo = {
         name: `${mainVideo.name}.${getFileExtension(mainVideo)}`,
-        filePath: `s3://editeasebucket/videos/${mainVideo.name}.${getFileExtension(mainVideo)}`,
+        filePath: `s3://editeasebucket/videos/${
+          mainVideo.name
+        }.${getFileExtension(mainVideo)}`,
         size: mainVideo.size,
         length: 12,
         sourceVideos: [],
@@ -64,6 +69,7 @@ export const BrollsStage = () => {
       createVideoMutation(createVideo)
         .then(({ data }) => {
           if (data?.id) {
+            console.log(`video id: ${data?.id}`);
             const addBrolls = {
               name: `${mainVideo.name}.${getFileExtension(mainVideo)}`,
               filePath: '',
@@ -97,7 +103,11 @@ export const BrollsStage = () => {
           }
         })
         .then((data) => {
-          startProcess(data?.data.id);
+          console.log(`video id: ${data?.data.id}`);
+          return startProcess(data?.data.id);
+        })
+        .then(({ data }) => {
+          console.log(`process id: ${data?.processId}`);
         })
         .finally(() => {
           setIsInProcess(false);
