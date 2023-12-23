@@ -11,6 +11,7 @@ import { useBoundStore } from '@/app/state/transition-state';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { PexelsVideoPickerCard } from '@/app/components/PexelsVideoPickerCard/PexelsVideoPickerCard';
+import {BrollsEditCard} from "@/app/components/BrollsEditCard/BrollsEditCard";
 
 export const BrollsStage = () => {
   const activateTransition = useBoundStore((state) => state.activateTransition);
@@ -81,6 +82,7 @@ export const BrollsStage = () => {
           <span className='loading loading-ring loading-md'></span>
         )}
         <PexelsVideoPickerCard />
+        <BrollsEditCard/>
         <TranscriptCard />
       </div>
       <GenerateButton buttonText={'Merge Videos'} onClick={onClickButton} />

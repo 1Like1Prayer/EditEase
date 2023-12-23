@@ -65,30 +65,19 @@ export const PexelsVideoPickerCard = () => {
         height={300}
         dataLength={videos.length}
       >
-        <div className='grid grid-cols-5 gap-2'>
+        <div className='grid grid-cols-5 gap-2 p-2'>
           {mapVideoMatchToMainVideo(videos).map((video) => (
             <video
               key={video.video_files[0].link}
               muted
               loop
               onClick={() => addBroll(video, video.video_files[0])}
-              className={`sm:h-30 relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-fit`}
+              className={`sm:h-30 relative h-full cursor-pointer rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30 sm:w-fit`}
               src={video.video_files[0].link}
             />
           ))}
         </div>
       </InfiniteScroll>
-      <div className='grid grid-cols-5 gap-2'>
-        {Array.from(brollVideos.values()).map((broll) => (
-          <video
-            key={broll.link}
-            muted
-            loop
-            className={`sm:h-30 sm:w-fit relative h-full rounded-md object-cover transition duration-300 hover:rounded-md hover:opacity-30`}
-            src={broll.link}
-          />
-        ))}
-      </div>
     </div>
   );
 };
