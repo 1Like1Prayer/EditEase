@@ -11,7 +11,7 @@ export const BrollsEditCard = () => {
       <div>Choose Brolls Times:</div>
       <div className='grid grid-cols-5 gap-2'>
         {Array.from(brollVideos.values()).map((broll) => (
-          <BrollEdit broll={broll} />
+          <BrollEdit key={broll.pexelId} broll={broll} />
         ))}
       </div>
     </div>

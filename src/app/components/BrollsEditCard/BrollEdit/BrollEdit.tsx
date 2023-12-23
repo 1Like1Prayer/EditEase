@@ -30,7 +30,7 @@ export const BrollEdit = ({ broll }: BrollEditProps) => {
   };
 
   return (
-    <div key={pexelId} className='dropdown dropdown-bottom'>
+    <div className='dropdown dropdown-bottom'>
       <div className='relative'>
         <video
           tabIndex={0}
