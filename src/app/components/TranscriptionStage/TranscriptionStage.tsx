@@ -1,19 +1,22 @@
-import { SubtitleStyleCard } from '@/app/components/SubtitleStyleCard/SubtitleStyleCard';
-import { VoiceOverCard } from '@/app/components/VoiceOverCard/VoiceOverCard';
-import { LanguageCard } from '@/app/components/LanguageCard/LanguageCard';
-import { BackgroundMusicCard } from '@/app/components/BackgroundMusicCard/BackgroundMusicCard';
+import { SubtitleStyleCard } from '@/app/components/TranscriptionStage/SubtitleStyleCard/SubtitleStyleCard';
+import { VoiceOverCard } from '@/app/components/TranscriptionStage/VoiceOverCard/VoiceOverCard';
+import { LanguageCard } from '@/app/components/TranscriptionStage/LanguageCard/LanguageCard';
+import { BackgroundMusicCard } from '@/app/components/TranscriptionStage/BackgroundMusicCard/BackgroundMusicCard';
 import React, { useState } from 'react';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
-import { EditWordDialog } from '@/app/components/EditSubscriptionDialog/EditWordDialog';
-import { TranscriptionCard } from '@/app/components/TranscriptionCard/TranscriptionCard';
+import { TranscriptionCard } from '@/app/components/TranscriptionStage/TranscriptionCard/TranscriptionCard';
 
 export const TranscriptionStage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className='absolute flex w-full flex-col items-center gap-10 '>
       <div className='grid w-4/5 grid-cols-2 gap-4'>
+        {/*//todo: add this components when it'll be relevant (right now original transcription is not implements)*/}
+        {/*<div className='col-span-2'>*/}
+        {/*  <TranscriptSelectionCard />*/}
+        {/*</div>*/}
         <div className='col-span-2'>
-          <TranscriptionCard transcriptions={['this is an example line'] } />
+          <TranscriptionCard />
         </div>
         <SubtitleStyleCard />
         <VoiceOverCard />
@@ -30,7 +33,8 @@ export const TranscriptionStage = () => {
           <GenerateButton buttonText={'Generate Video'} isNextStep={false} />
         </div>
       </div>
-      <EditWordDialog isOpen={isOpen} />
+      {/*  todo: the API does not support the dialog options currently, do not implement yet */}
+      {/*<EditWordDialog isOpen={isOpen} />*/}
     </div>
   );
 };
