@@ -42,15 +42,21 @@ export const BrollsStage = () => {
     },
   });
 
+  const isVideosValid = ():boolean => !!mainVideo != null && brollVideos.every((brollVideo) => !!brollVideo.startTime && !!brollVideo.endTime)
+
   const onClickButton = async () => {
-    if (mainVideo) {
+    if (!mainVideo) {
+      alert('main video missing');
+    } else if(!Array.from(brollVideos.values()).every((brollVideo) => !!brollVideo.startTime && !!brollVideo.endTime)) {
+      alert('please choose time to ALL brolls')
+    } else {
       setIsInProcess(true);
       await upload([mainVideo]);
 
       const createVideo = {
         name: `${mainVideo.name}`,
         filePath: `s3://editeasebucket/videos/${
-          mainVideo.name
+            mainVideo.name
         }`,
         size: mainVideo.size,
         length: 12,
@@ -67,54 +73,52 @@ export const BrollsStage = () => {
       };
 
       createVideoMutation(createVideo)
-        .then(({ data }) => {
-          if (data?.id) {
-            console.log(`video id: ${data?.id}`);
-            const addBrolls = {
-              name: `${mainVideo.name}`,
-              filePath: '',
-              size: mainVideo!.size,
-              length: 12,
-              width: 1080,
-              height: 1920,
-              fps: 30,
-              sourceVideosIds: [data.id],
-              gifEffects: [],
-              imageEffects: [],
-              soundEffects: [],
-              transitions: [],
-              texts: [],
-              brolls: Array.from(brollVideos.values()).map(
-                ({ pexelId, qualityId, link, startTime, endTime }) => ({
-                  pexel_id: pexelId,
-                  pexel_quality_id: qualityId,
-                  source_video_id: mainVideo.name,
-                  pexel_video_url: link,
-                  video_url: '',
-                  length: endTime,
-                  video_start_time: startTime,
-                  broll_start_time: 0,
-                  broll_end_time: endTime - startTime,
-                }),
-              ),
-            };
+          .then(({ data }) => {
+            if (data?.id) {
+              console.log(`video id: ${data?.id}`);
+              const addBrolls = {
+                name: `${mainVideo.name}`,
+                filePath: '',
+                size: mainVideo!.size,
+                length: 12,
+                width: 1080,
+                height: 1920,
+                fps: 30,
+                sourceVideosIds: [data.id],
+                gifEffects: [],
+                imageEffects: [],
+                soundEffects: [],
+                transitions: [],
+                texts: [],
+                brolls: Array.from(brollVideos.values()).map(
+                    ({ pexelId, qualityId, link, startTime, endTime }) => ({
+                      pexel_id: pexelId,
+                      pexel_quality_id: qualityId,
+                      source_video_id: mainVideo.name,
+                      pexel_video_url: link,
+                      video_url: '',
+                      length: endTime,
+                      video_start_time: startTime,
+                      broll_start_time: 0,
+                      broll_end_time: endTime! - startTime!,
+                    }),
+                ),
+              };
 
-            return addBrollsMutation(addBrolls);
-          }
-        })
-        .then((data) => {
-          console.log(`video id: ${data?.data.id}`);
-          return startProcess(data?.data.id);
-        })
-        .then(({ data }) => {
-          console.log(`process id: ${data?.processId}`);
-        })
-        .finally(() => {
-          setIsInProcess(false);
-          activateTransition();
-        });
-    } else {
-      alert('upload your main video first');
+              return addBrollsMutation(addBrolls);
+            }
+          })
+          .then((data) => {
+            console.log(`video id: ${data?.data.id}`);
+            return startProcess(data?.data.id);
+          })
+          .then(({ data }) => {
+            console.log(`process id: ${data?.processId}`);
+          })
+          .finally(() => {
+            setIsInProcess(false);
+            activateTransition();
+          });
     }
   };
 
