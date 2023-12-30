@@ -39,8 +39,8 @@ export const usePexelsVideo = ({ searchText }: UsePexelsVideoProps) => {
       axios.get(
         `https://api.pexels.com/videos/${
           searchText
-            ? `search?query=${searchText}&page=${page}&size=medium&orientation=landscape`
-            : `popular?page=${page}&size=medium&orientation=landscape`
+            ? `search?query=${searchText}&page=${page}&size=medium&orientation=landscape&per_page=50`
+            : `popular?page=${page}&size=medium&orientation=landscape&per_page=50`
         }`,
         {
           headers: {

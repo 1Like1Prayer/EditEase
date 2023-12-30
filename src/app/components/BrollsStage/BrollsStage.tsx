@@ -48,10 +48,10 @@ export const BrollsStage = () => {
       await upload([mainVideo]);
 
       const createVideo = {
-        name: `${mainVideo.name}.${getFileExtension(mainVideo)}`,
+        name: `${mainVideo.name}`,
         filePath: `s3://editeasebucket/videos/${
           mainVideo.name
-        }.${getFileExtension(mainVideo)}`,
+        }`,
         size: mainVideo.size,
         length: 12,
         sourceVideos: [],
@@ -71,7 +71,7 @@ export const BrollsStage = () => {
           if (data?.id) {
             console.log(`video id: ${data?.id}`);
             const addBrolls = {
-              name: `${mainVideo.name}.${getFileExtension(mainVideo)}`,
+              name: `${mainVideo.name}`,
               filePath: '',
               size: mainVideo!.size,
               length: 12,
@@ -91,10 +91,10 @@ export const BrollsStage = () => {
                   source_video_id: mainVideo.name,
                   pexel_video_url: link,
                   video_url: '',
-                  length: 10,
+                  length: endTime,
                   video_start_time: startTime,
                   broll_start_time: 0,
-                  broll_end_time: endTime,
+                  broll_end_time: endTime - startTime,
                 }),
               ),
             };
