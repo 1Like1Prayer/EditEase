@@ -136,6 +136,7 @@ const convertToLine = (sentence: string) => ({
   text: sentence,
   config: initLineConfig,
 });
+
 const convertToParagraph = (sentence: string) =>
   sentence
     .split('.')

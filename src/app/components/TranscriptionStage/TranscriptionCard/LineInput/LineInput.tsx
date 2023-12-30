@@ -16,9 +16,8 @@ export const LineInput = () => {
   } = useForm<FormData>({
     defaultValues: { line: '' },
   });
-  const onSubmit = (data: FormData) => {
-    console.log(data.line);
-  };
+
+  const onSubmit = (data: FormData) => addLine(data.line);
 
   return (
     <form className='col-span-2' onSubmit={handleSubmit(onSubmit)}>
