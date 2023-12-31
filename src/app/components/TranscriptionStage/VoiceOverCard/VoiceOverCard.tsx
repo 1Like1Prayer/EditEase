@@ -1,6 +1,8 @@
 import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
 import React from 'react';
-import { Select, SelectOptionType } from '@/app/components/Select/Select';
+import { SelectOptionType } from '@/app/components/Select/Select';
+import { BackgroundMusicCard } from '@/app/components/TranscriptionStage/BackgroundMusicCard/BackgroundMusicCard';
+import { useBoundStore } from '@/app/state/state';
 
 const VoiceOptions: SelectOptionType[] = [
   { title: 'Benjamin, Male' },
@@ -9,11 +11,14 @@ const VoiceOptions: SelectOptionType[] = [
   { title: 'Mia, Female' },
 ];
 
-export const VoiceOverCard = () => (
-  <div className='card space-y-2'>
-    <div className='text-center text-black'>Voice Over</div>
-    <ButtonGroupSelector elementProps={[{ title: 'Yes' }, { title: 'No' }]} />
-    <div className='text-center text-black'>Choose Voice</div>
-    <Select options={VoiceOptions} />
-  </div>
-);
+export const VoiceOverCard = () => {
+  const setVoiceOver = useBoundStore((state) => state.changeAllLineSettings);
+  //todo: add implementation of changing state in ButtonGroupSelector
+  return (
+    <div className='card space-y-2'>
+      <div className='text-center text-black'>Voice Over</div>
+      <ButtonGroupSelector elementProps={[{ title: 'Yes' }, { title: 'No' }]}/>
+      <BackgroundMusicCard />
+    </div>
+  );
+};

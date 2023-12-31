@@ -99,13 +99,16 @@ export interface TranscriptionState {
     field: T,
     value: LineConfig[T],
   ) => void;
-
+  changeAllLineSettings: <T extends keyof LineConfig>(
+    field: T,
+    value: LineConfig[T],
+  ) => void;
   //todo add change config for each field + subfield (maybe use Generics)
 }
 
 const initTranscriptionState: Omit<
   TranscriptionState,
-  'addLine' | 'removeLine' | 'changeLineSettings'
+  'addLine' | 'removeLine' | 'changeLineSettings' | 'changeAllLineSettings'
 > = {
   transcription: {
     style: TranscriptionStyle.NONE,
@@ -146,8 +149,6 @@ export const createTranscriptionSlice: StateCreator<TranscriptionState> = (
     value: LineConfig[T],
   ) =>
     set((state) => {
-      const currLine: Line = state.transcription.lines.get(index) as Line;
-      currLine.config[field] = value;
       const updatedLines = state.transcription.lines.update(
         index,
         (line) =>
@@ -162,6 +163,20 @@ export const createTranscriptionSlice: StateCreator<TranscriptionState> = (
           ...state.transcription,
           lines: updatedLines,
         },
+      };
+    }),
+  changeAllLineSettings: <T extends keyof LineConfig>(
+    field: T,
+    value: LineConfig[T],
+  ) =>
+    set((state) => {
+      const updatedLines = state.transcription.lines.map((line: Line) => ({
+        ...line,
+        config: { ...line.config, [field]: value },
+      }));
+      return {
+        ...state,
+        transcription: { ...state.transcription, lines: updatedLines },
       };
     }),
 });

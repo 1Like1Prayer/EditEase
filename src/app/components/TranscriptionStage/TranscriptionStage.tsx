@@ -23,9 +23,6 @@ export const TranscriptionStage = () => {
         <div className='col-span-2'>
           <LanguageCard />
         </div>
-        <div className='col-span-2'>
-          <BackgroundMusicCard />
-        </div>
       </div>
       <div className='flex flex-row justify-between gap-4'>
         <GenerateButton buttonText={'Previous Stage'} isNextStep={true} />
