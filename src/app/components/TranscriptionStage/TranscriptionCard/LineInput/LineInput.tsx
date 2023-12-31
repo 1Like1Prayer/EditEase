@@ -20,17 +20,17 @@ export const LineInput = () => {
   const onSubmit = (data: FormData) => addLine(data.line);
 
   return (
-    <form className='col-span-2' onSubmit={handleSubmit(onSubmit)}>
+    <form className='col-span-5' onSubmit={handleSubmit(onSubmit)}>
       <div className='h-6 text-red-500'>
         {errors.line && 'This field is required'}
       </div>
-      <div className='flex w-5/6 justify-between rounded-md bg-white p-2'>
+      <div className='flex w-5/6 rounded-md bg-white pl-2 '>
         <textarea
-          className='bg-white'
+          className='bg-white w-full focus:outline-0'
           {...register('line', { required: true })}
           placeholder='Enter a New Subtitle Here'
         />
-        <button type='submit' className='pr-4'>
+        <button type='submit' className='font-bold px-4'>
           Add
         </button>
       </div>

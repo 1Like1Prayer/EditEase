@@ -1,5 +1,7 @@
 import { StateCreator } from 'zustand';
 import { RussianRuble } from 'lucide-react';
+import { Map } from 'immutable';
+import { state } from 'sucrase/dist/types/parser/traverser/base';
 
 const enum TranscriptionStyle {
   NONE = 'None',
@@ -48,13 +50,14 @@ interface ZoomConfig {
   style: ZoomStyle;
 }
 
-interface LineConfig {
+export interface LineConfig {
   backgroundColor: string;
   textColor: string;
   startTime: number;
   length: number;
   Font: FontConfig;
   alignment: alignment;
+  isSubbed: boolean;
   dubbing: DubConfig;
   gif?: GifConfig;
   sound?: string;
@@ -68,10 +71,11 @@ const initLineConfig: LineConfig = {
   length: 5,
   Font: { fontName: 'Arial', bold: true, italic: false },
   alignment: 'left',
+  isSubbed: true,
   dubbing: { voices: Voices.BENJ, isDubbed: true },
 };
 
-interface Line {
+export interface Line {
   text: string;
   config: LineConfig;
 }
@@ -90,19 +94,25 @@ export interface TranscriptionState {
   transcription: Transcription;
   addLine: (line: string) => void;
   removeLine: (index: number) => void;
+  changeLineSettings: <T extends keyof LineConfig>(
+    index: number,
+    field: T,
+    value: LineConfig[T],
+  ) => void;
+
   //todo add change config for each field + subfield (maybe use Generics)
 }
 
 const initTranscriptionState: Omit<
   TranscriptionState,
-  'addLine' | 'removeLine'
+  'addLine' | 'removeLine' | 'changeLineSettings'
 > = {
   transcription: {
     style: TranscriptionStyle.NONE,
     subLanguage: Languages.ENGLISH,
     dubLanguage: [Languages.ENGLISH],
     backgroundMusic: '',
-    lines: new Map<number, Line>(),
+    lines: Map<number, Line>(),
   },
 };
 export const createTranscriptionSlice: StateCreator<TranscriptionState> = (
@@ -111,6 +121,7 @@ export const createTranscriptionSlice: StateCreator<TranscriptionState> = (
   ...initTranscriptionState,
   addLine: (line: string) =>
     set((state) => ({
+      ...state,
       transcription: {
         ...state.transcription,
         lines: state.transcription.lines.set(
@@ -121,12 +132,35 @@ export const createTranscriptionSlice: StateCreator<TranscriptionState> = (
     })),
   removeLine: (index: number) =>
     set((state) => {
-      const newLines = new Map(state.transcription.lines);
-      newLines.delete(index);
+      const newLines = state.transcription.lines.delete(index);
       return {
         transcription: {
           ...state.transcription,
           lines: newLines,
+        },
+      };
+    }),
+  changeLineSettings: <T extends keyof LineConfig>(
+    index: number,
+    field: T,
+    value: LineConfig[T],
+  ) =>
+    set((state) => {
+      const currLine: Line = state.transcription.lines.get(index) as Line;
+      currLine.config[field] = value;
+      const updatedLines = state.transcription.lines.update(
+        index,
+        (line) =>
+          ({
+            ...line,
+            config: { ...(line as Line).config, [field]: value },
+          }) as Line,
+      );
+      return {
+        ...state,
+        transcription: {
+          ...state.transcription,
+          lines: updatedLines,
         },
       };
     }),
