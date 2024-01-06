@@ -1,5 +1,5 @@
 import { create, StateCreator } from 'zustand';
-import {Map} from 'immutable'
+import { Map } from 'immutable';
 
 export interface BrollVideoType {
   pexelId: number;
@@ -7,6 +7,9 @@ export interface BrollVideoType {
   link: string;
   startTime?: number;
   endTime?: number;
+  animation: string;
+  videoType: 'broll' | 'original' | 'lipSync';
+  eyeContact: boolean;
 }
 
 export interface VideosSlice {
