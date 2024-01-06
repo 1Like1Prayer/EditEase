@@ -4,7 +4,7 @@ import {
   PexelsVideoResponseType,
   PexelsVideoType,
   usePexelsVideo,
-} from '@/app/hooks/pexels/usePexelsVideo';
+} from '@/app/hooks/usePexelsVideo/usePexelsVideo';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { mapVideoMatchToMainVideo } from '@/app/utils/matchMainVideoToBrolls';
