@@ -11,7 +11,7 @@ const MusicOptions: SelectOptionType[] = [
 export const BackgroundMusicCard = () => {
   return (
     <div className='card space-y-2'>
-      <div className='text-center text-black'>Add Background Music</div>
+      <div className='text-center text-black '>Add Background Music</div>
       <Select options={MusicOptions} />
     </div>
   );

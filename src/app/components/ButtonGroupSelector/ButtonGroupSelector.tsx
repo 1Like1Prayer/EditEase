@@ -3,18 +3,23 @@
 import { RadioGroup } from '@headlessui/react';
 import React, { ReactElement, useState } from 'react';
 
-interface ElementsProps {
+interface ElementsProps<T> {
   title: string;
   prefixIcon?: ReactElement<SVGElement>;
   suffixIcon?: ReactElement<SVGElement>;
+  value?: T;
 }
 
-interface ButtonGroupProps {
-  elementProps: ElementsProps[];
+interface ButtonGroupProps<T> {
+  elementProps: ElementsProps<T>[];
+  setState?: (value: T) => void;
 }
 
-export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
-  const [selected, setSelected] = useState<string>(elementProps?.[0].title);
+export const ButtonGroupSelector = <T,>({
+  elementProps,
+  setState,
+}: ButtonGroupProps<T>) => {
+  const [selected, setSelected] = useState<string>('');
   return (
     <RadioGroup
       className='grid grid-cols-2 gap-2'
@@ -25,8 +30,9 @@ export const ButtonGroupSelector = ({ elementProps }: ButtonGroupProps) => {
         <RadioGroup.Option
           key={elementProp.title}
           value={elementProp.title}
+          onClick={() => (setState ? setState(elementProp.value as T) : '')}
           className={({ checked }) =>
-            `button flex w-full flex-row items-center justify-evenly justify-self-center text-xs focus:outline-none sm:w-2/3 sm:text-sm
+            `button flex items-center justify-evenly justify-self-center text-center text-xs focus:outline-none sm:w-2/3 sm:text-sm
             ${checked && 'bg-primary hover:bg-primary/75'}`
           }
         >
