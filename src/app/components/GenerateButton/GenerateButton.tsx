@@ -4,17 +4,17 @@ import React from 'react';
 
 interface GenerateButtonInterface {
   buttonText: string;
-  onClick?: () => void;
+  isNextStep: boolean;
 }
 export const GenerateButton = ({
   buttonText,
-  onClick,
+  isNextStep,
 }: GenerateButtonInterface) => {
   const activateTransition = useBoundStore((state) => state.activateTransition);
   return (
     <div
       className='group relative inline-flex'
-      onClick={() => (onClick ? activateTransition() : ' ')}
+      onClick={() => (isNextStep ? activateTransition() : ' ')}
     >
       <div className='transitiona-all animate-tilt absolute -inset-px rounded-xl bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] opacity-70 blur-lg duration-1000 group-hover:-inset-1 group-hover:opacity-100 group-hover:duration-200'></div>
       <a
