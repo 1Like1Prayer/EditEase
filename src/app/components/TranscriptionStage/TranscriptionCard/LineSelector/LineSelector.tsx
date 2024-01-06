@@ -10,7 +10,7 @@ export const LineSelector = () => {
   return (
     <>
       {Array.from(lines).map(([key, value]) => (
-        <Fragment key={key}>
+        <Fragment  key={key}>
           <div className='col-span-3 flex flex-row items-center justify-between rounded-md bg-white px-4 py-2'>
             <div className='pr-2'>{value.text}</div>
             <EditIcon />

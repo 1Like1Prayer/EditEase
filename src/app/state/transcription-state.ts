@@ -1,9 +1,7 @@
 import { StateCreator } from 'zustand';
-import { RussianRuble } from 'lucide-react';
 import { Map } from 'immutable';
-import { state } from 'sucrase/dist/types/parser/traverser/base';
 
-const enum TranscriptionStyle {
+export const enum TranscriptionStyle {
   NONE = 'None',
   CLOSED = 'Closed Caption',
   BIG = 'Big Title',
@@ -94,6 +92,10 @@ export interface TranscriptionState {
   transcription: Transcription;
   addLine: (line: string) => void;
   removeLine: (index: number) => void;
+  changeTranscriptionSettings: <T extends keyof Transcription>(
+    field: T,
+    value: Transcription[T],
+  ) => void;
   changeLineSettings: <T extends keyof LineConfig>(
     index: number,
     field: T,
@@ -103,12 +105,15 @@ export interface TranscriptionState {
     field: T,
     value: LineConfig[T],
   ) => void;
-  //todo add change config for each field + subfield (maybe use Generics)
 }
 
 const initTranscriptionState: Omit<
   TranscriptionState,
-  'addLine' | 'removeLine' | 'changeLineSettings' | 'changeAllLineSettings'
+  | 'addLine'
+  | 'removeLine'
+  | 'changeTranscriptionSettings'
+  | 'changeLineSettings'
+  | 'changeAllLineSettings'
 > = {
   transcription: {
     style: TranscriptionStyle.NONE,
@@ -143,6 +148,14 @@ export const createTranscriptionSlice: StateCreator<TranscriptionState> = (
         },
       };
     }),
+  changeTranscriptionSettings: <T extends keyof Transcription>(
+    field: T,
+    value: Transcription[T],
+  ) =>
+    set((state) => ({
+      ...state,
+      transcription: { ...state.transcription, [field]: value },
+    })),
   changeLineSettings: <T extends keyof LineConfig>(
     index: number,
     field: T,

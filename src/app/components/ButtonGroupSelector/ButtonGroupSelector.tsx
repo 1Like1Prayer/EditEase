@@ -19,7 +19,7 @@ export const ButtonGroupSelector = <T,>({
   elementProps,
   setState,
 }: ButtonGroupProps<T>) => {
-  const [selected, setSelected] = useState<string>(elementProps?.[0].title);
+  const [selected, setSelected] = useState<string>('');
   return (
     <RadioGroup
       className='grid grid-cols-2 gap-2'
