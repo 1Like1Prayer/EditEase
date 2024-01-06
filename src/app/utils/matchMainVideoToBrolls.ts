@@ -1,6 +1,6 @@
 'use client';
 
-import { PexelsVideoResponseType } from '@/app/hooks/pexels/usePexelsVideo';
+import { PexelsVideoResponseType } from '@/app/hooks/usePexelsVideo/usePexelsVideo';
 import { useVideoStore } from '@/app/state/videos-state';
 
 // TODO: use sharp to match the broll size to the main video size
