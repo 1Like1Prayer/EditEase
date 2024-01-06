@@ -28,7 +28,7 @@ name: Deploy to Amazon ECS
 
 on:
   push:
-    branches: [ "main", "pipeline" ]
+    branches: [ "main", "pipeline", "client" ]
 
 env:
   AWS_REGION: eu-north-1                      # set this to your preferred AWS region, e.g. us-west-1
@@ -91,7 +91,7 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        npm ci
+        npm install
         sed -i 's|return `commonjs ${localRes.replace(/.*?next[/\\]dist/, "next/dist")}`;|return `commonjs ${localRes.replace(/.*?next[/\\]dist/, "next/dist").replace(/\\/g, "/")}`;|' ./node_modules/next/dist/build/handle-externals.js
         npm run build
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
