@@ -2,10 +2,16 @@
 
 import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
 import React, { useState } from 'react';
+import { useBoundStore } from '@/app/state/state';
+import { Languages } from '@/app/state/transcription-state';
 
-export const LanguageCard = () => {
+export const DubbingLanguageCard = () => {
   const [isFullList, setFullList] = useState<boolean>(false);
-
+  const setDubbingLanguage = useBoundStore(
+    (state) => state.changeTranscriptionSettings,
+  );
+  const changeLanguage = (value: Languages) =>
+    setDubbingLanguage('dubLanguage', value);
   return (
     <div className='card flex flex-row justify-between'>
       <div className='w-3/5 text-black'>
@@ -18,11 +24,12 @@ export const LanguageCard = () => {
         </u>
       </div>
       <ButtonGroupSelector
+        setState={changeLanguage}
         elementProps={[
-          { title: 'ISR' },
-          { title: 'USA' },
-          { title: 'ITA' },
-          { title: 'SPA' },
+          { title: 'ISR', value: Languages.HEBREW },
+          { title: 'USA', value: Languages.ENGLISH },
+          { title: 'RUS', value: Languages.RUSSIAN },
+          { title: 'ARB', value: Languages.ARABIC },
         ]}
       />
     </div>

@@ -15,10 +15,10 @@ export const SubtitleStyleCard = () => {
       <ButtonGroupSelector
         setState={changeSubtitleStyle}
         elementProps={[
-          { title: 'None' },
-          { title: 'Closed Caption' },
-          { title: 'Big Title' },
-          { title: 'Word by Word' },
+          { title: 'None', value: TranscriptionStyle.NONE },
+          { title: 'Closed Caption', value: TranscriptionStyle.CLOSED },
+          { title: 'Big Title', value: TranscriptionStyle.BIG },
+          { title: 'Word by Word', value: TranscriptionStyle.SINGLE },
         ]}
       />
     </div>

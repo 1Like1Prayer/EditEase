@@ -1,10 +1,10 @@
 import { SubtitleStyleCard } from '@/app/components/TranscriptionStage/SubtitleStyleCard/SubtitleStyleCard';
 import { VoiceOverCard } from '@/app/components/TranscriptionStage/VoiceOverCard/VoiceOverCard';
-import { LanguageCard } from '@/app/components/TranscriptionStage/LanguageCard/LanguageCard';
-import { BackgroundMusicCard } from '@/app/components/TranscriptionStage/BackgroundMusicCard/BackgroundMusicCard';
+import { DubbingLanguageCard } from '@/app/components/TranscriptionStage/DubbingLanguageCard/DubbingLanguageCard';
 import React, { useState } from 'react';
 import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
 import { TranscriptionCard } from '@/app/components/TranscriptionStage/TranscriptionCard/TranscriptionCard';
+import { SubtitleLanguageCard } from '@/app/components/TranscriptionStage/SubtitleLanguageCard/SubtitleLanguageCard';
 
 export const TranscriptionStage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,12 +16,15 @@ export const TranscriptionStage = () => {
         {/*  <TranscriptSelectionCard />*/}
         {/*</div>*/}
         <div className='col-span-2'>
+          <SubtitleLanguageCard/>
+        </div>
+        <div className='col-span-2'>
           <TranscriptionCard />
         </div>
         <SubtitleStyleCard />
         <VoiceOverCard />
         <div className='col-span-2'>
-          <LanguageCard />
+          <DubbingLanguageCard />
         </div>
       </div>
       <div className='flex flex-row justify-between gap-4'>

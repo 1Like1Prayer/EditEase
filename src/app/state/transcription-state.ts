@@ -8,7 +8,7 @@ export const enum TranscriptionStyle {
   SINGLE = 'Word By Word',
 }
 
-const enum Languages {
+export enum Languages {
   HEBREW = 'Hebrew',
   ENGLISH = 'English',
   RUSSIAN = 'Russian',
@@ -83,7 +83,7 @@ export type Paragraph = Line[];
 interface Transcription {
   style: TranscriptionStyle;
   subLanguage: Languages;
-  dubLanguage: Languages[];
+  dubLanguage: Languages;
   backgroundMusic: string;
   lines: Map<number, Line>;
 }
@@ -118,7 +118,7 @@ const initTranscriptionState: Omit<
   transcription: {
     style: TranscriptionStyle.NONE,
     subLanguage: Languages.ENGLISH,
-    dubLanguage: [Languages.ENGLISH],
+    dubLanguage: Languages.ENGLISH,
     backgroundMusic: '',
     lines: Map<number, Line>(),
   },
