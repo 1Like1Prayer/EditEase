@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { mapVideoMatchToMainVideo } from '@/app/utils/matchMainVideoToBrolls';
 import { useVideoStore } from '@/app/state/videos-state';
+import {ANIMATION_OPTIONS} from "@/app/components/BrollsEditCard/BrollEdit/BrollEdit";
 
 export const PexelsVideoPickerCard = () => {
   const [searchText, setSearchText] = useState('');
@@ -29,6 +30,9 @@ export const PexelsVideoPickerCard = () => {
       pexelId: video.id,
       qualityId: videoQuality.id,
       link: videoQuality.link,
+      animation: ANIMATION_OPTIONS[0].name,
+      videoType: "broll",
+      eyeContact: false
     });
   };
 
