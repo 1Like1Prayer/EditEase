@@ -5,9 +5,10 @@ import React, { useState } from 'react';
 import { GenerateButton } from '@/app/components/shared/GenerateButton/GenerateButton';
 import { TranscriptionCard } from '@/app/components/InitialStage/TranscriptionCard/TranscriptionCard';
 import { SubtitleLanguageCard } from '@/app/components/InitialStage/SubtitleLanguageCard/SubtitleLanguageCard';
+import { VideoUploaderCard } from '@/app/components/BrollsStage/VideoUploader/VideoUploaderCard';
+import { useVideoStore } from '@/app/state/videos-state';
 
 export const InitialStage = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className='flex w-full flex-col items-center gap-10 '>
       <div className='grid w-4/5 grid-cols-2 gap-4'>
@@ -15,6 +16,9 @@ export const InitialStage = () => {
         {/*<div className='col-span-2'>*/}
         {/*  <TranscriptSelectionCard />*/}
         {/*</div>*/}
+        <div className='col-span-2'>
+          <VideoUploaderCard/>
+        </div>
         <div className='col-span-2'>
           <SubtitleLanguageCard />
         </div>
@@ -27,7 +31,7 @@ export const InitialStage = () => {
           <DubbingLanguageCard />
         </div>
       </div>
-      <div onClick={() => setIsOpen(true)}>
+      <div>
         <GenerateButton buttonText={'Generate Video'} />
       </div>
       {/*  todo: the API does not support the dialog options currently, do not implement yet */}

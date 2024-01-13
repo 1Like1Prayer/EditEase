@@ -1,48 +1,49 @@
 'use client';
 
-import { BrollVideoType, useVideoStore } from '@/app/state/videos-state';
+import { BrollVideoType } from '@/app/state/videos-state';
 import {
   Ban,
-  Book,
   Drama,
   Droplets,
   Expand,
   Eye,
   EyeOff,
+  Film,
   Flame,
+  Rabbit,
   Shrink,
   Trash2,
 } from 'lucide-react';
 import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
+import React, { useState } from 'react';
 const convertTimeToNumber = (time: string): number => {
   const [minute, second] = time.split(/:/);
   return Number(minute) * 60 + Number(second);
 };
 
+export const ANIMATION_OPTIONS = [
+  { name: 'No Animation', icon: <Ban /> },
+  { name: 'Film', icon: <Flame /> },
+  { name: 'Vintage', icon: <Film /> },
+  { name: 'Zoom-In', icon: <Expand /> },
+  { name: 'Zoom-Out', icon: <Shrink /> },
+  { name: 'Cartoon', icon: <Rabbit /> },
+  { name: 'Dramatic', icon: <Drama /> },
+  { name: 'Blur', icon: <Droplets /> },
+];
+
 interface BrollEditProps {
   broll: BrollVideoType;
+  onDelete: () => void;
+  onSave: (broll: BrollVideoType) => void;
 }
 
-export const BrollEdit = ({ broll }: BrollEditProps) => {
-  const { addBrollVideos, removeBrollVideos } = useVideoStore();
-  const { pexelId, link, qualityId, endTime, startTime } = broll;
-
-  const saveBrollStartTime = (startTime: string) => {
-    addBrollVideos({
-      ...broll,
-      startTime: convertTimeToNumber(startTime),
-    });
-  };
-
-  const saveBrollEndTime = (endTime: string) => {
-    addBrollVideos({
-      ...broll,
-      endTime: convertTimeToNumber(endTime),
-    });
-  };
+export const BrollEdit = ({ broll, onDelete, onSave }: BrollEditProps) => {
+  const [editedBroll, setEditBroll] = useState<BrollVideoType>({ ...broll });
+  const { link } = broll;
 
   return (
-    <div className='dropdown dropdown-bottom'>
+    <div className='dropdown dropdown-bottom absolute'>
       <div className='relative'>
         <div className='tooltip' data-tip='edit b-roll'>
           <video
@@ -66,7 +67,7 @@ export const BrollEdit = ({ broll }: BrollEditProps) => {
             ]}
           />
         </div>
-        <div className='flex justify-between'>
+        <div className='center flex justify-between'>
           <div>Keep Eye Contact</div>
           <ButtonGroupSelector
             elementProps={[
@@ -87,39 +88,41 @@ export const BrollEdit = ({ broll }: BrollEditProps) => {
         <div className=''>
           <div>Entrance Animation</div>
           <div className='grid grid-cols-4 items-center gap-2'>
-            <button className='button w-fit'>
-              <Ban />
-            </button>
-            <button className='button w-fit'>
-              <Flame />
-            </button>
-            <button className='button w-fit'>
-              <Shrink />
-            </button>
-            <button className='button w-fit'>
-              <Expand />
-            </button>
-            <button className='button w-fit'>
-              <Shrink />
-            </button>
-            <button className='button w-fit'>
-              <Book />
-            </button>
-            <button className='button w-fit'>
-              <Drama />
-            </button>
-            <button className='button w-fit'>
-              <Droplets />
-            </button>
+            {ANIMATION_OPTIONS.map(({ icon, name }) => (
+              <div className='tooltip' data-tip={name} key={name}>
+                <button
+                  className={`button w-fit ${
+                    editedBroll.animation == name
+                      ? 'bg-primary hover:bg-primary/50'
+                      : ''
+                  }`}
+                  onClick={() =>
+                    setEditBroll((prev) => ({ ...prev, animation: name }))
+                  }
+                >
+                  {icon}
+                </button>
+              </div>
+            ))}
           </div>
         </div>
         <div className='flex flex-row-reverse justify-between'>
           <div className='flex gap-2'>
-            <button className='button bordered border-primary'>Cancel</button>
-            <button className='button bg-primary'>Apply</button>
+            <button
+              className='button bordered border-primary'
+              onClick={() => setEditBroll(() => ({ ...broll }))}
+            >
+              discard
+            </button>
+            <button
+              className='button bg-primary'
+              onClick={() => onSave(editedBroll)}
+            >
+              Save
+            </button>
           </div>
           <div className='tooltip' data-tip='delete b-roll'>
-            <button className='button bg-red-400'>
+            <button className='button bg-red-400' onClick={() => onDelete()}>
               <Trash2 />
             </button>
           </div>
