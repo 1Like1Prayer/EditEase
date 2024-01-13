@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import React, { useState } from 'react';
 import { useBoundStore } from '@/app/state/state';
 import { Languages } from '@/app/state/transcription-state';

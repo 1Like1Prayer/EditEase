@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, SelectOptionType } from '@/app/components/Select/Select';
+import { Select, SelectOptionType } from '@/app/components/shared/Select/Select';
 
 const MusicOptions: SelectOptionType[] = [
   { title: 'Benjamin, Male' },

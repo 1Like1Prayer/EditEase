@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import { BracketsIcon } from '@/app/components/icons/BracketsIcon';
 import { PersonIcon } from '@/app/components/icons/PersonIcon';
 

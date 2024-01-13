@@ -1,7 +1,7 @@
-import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import React from 'react';
-import { SelectOptionType } from '@/app/components/Select/Select';
-import { BackgroundMusicCard } from '@/app/components/TranscriptionStage/BackgroundMusicCard/BackgroundMusicCard';
+import { SelectOptionType } from '@/app/components/shared/Select/Select';
+import { BackgroundMusicCard } from '@/app/components/InitialStage/BackgroundMusicCard/BackgroundMusicCard';
 import { useBoundStore } from '@/app/state/state';
 import { Line } from '@/app/state/transcription-state';
 

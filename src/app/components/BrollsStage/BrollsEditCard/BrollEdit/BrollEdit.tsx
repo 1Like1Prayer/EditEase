@@ -15,7 +15,7 @@ import {
   Shrink,
   Trash2,
 } from 'lucide-react';
-import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import { useState } from 'react';
 const convertTimeToNumber = (time: string): number => {
   const [minute, second] = time.split(/:/);
