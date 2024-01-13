@@ -89,7 +89,7 @@ export const BrollEdit = ({ broll, onDelete, onSave }: BrollEditProps) => {
           <div>Entrance Animation</div>
           <div className='grid grid-cols-4 items-center gap-2'>
             {ANIMATION_OPTIONS.map(({ icon, name }) => (
-              <div className='tooltip' data-tip={name}>
+              <div className='tooltip' data-tip={name} key={name}>
                 <button
                   className={`button w-fit ${
                     editedBroll.animation == name
