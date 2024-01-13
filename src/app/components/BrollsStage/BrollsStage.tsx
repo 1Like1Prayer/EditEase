@@ -125,9 +125,6 @@ export const BrollsStage = () => {
 
   return (
     <div className='absolute flex w-full flex-col items-center gap-10'>
-      <div className='w-4/5 space-y-4'>
-        <BrollsEditCard />
-      </div>
       {isInProcess ? (
         <progress className='progress w-full'></progress>
       ) : isReady ? (
