@@ -1,14 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 
-import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
+import { GenerateButton } from '@/app/components/shared/GenerateButton/GenerateButton';
 
 import { useS3PutObject } from '@/app/hooks/useS3Uploader/useS3PutObject';
 import { useVideoStore } from '@/app/state/videos-state';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { PexelsVideoPickerCard } from '@/app/components/PexelsVideoPickerCard/PexelsVideoPickerCard';
-import { BrollsEditCard } from '@/app/components/BrollsEditCard/BrollsEditCard';
+import { PexelsVideoPickerCard } from '@/app/components/BrollsStage/PexelsVideoPickerCard/PexelsVideoPickerCard';
+import { BrollsEditCard } from '@/app/components/BrollsStage/BrollsEditCard/BrollsEditCard';
 import { useBoundStore } from '@/app/state/state';
 import { VideoUploaderCard } from '@/app/components/BrollsStage/VideoUploader/VideoUploaderCard';
 
@@ -141,7 +141,7 @@ export const BrollsStage = () => {
       {isInProcess ? (
         <progress className='progress w-full'></progress>
       ) : isReady ? (
-        <GenerateButton buttonText={'Merge Videos'} isNextStep={true}/>
+        <GenerateButton buttonText={'Merge Videos'}/>
       ) : (
         <button className='button' onClick={onClickButton}>
           upload

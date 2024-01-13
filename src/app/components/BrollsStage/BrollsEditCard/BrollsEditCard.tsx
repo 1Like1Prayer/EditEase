@@ -1,7 +1,7 @@
 'use client';
 
 import { useVideoStore } from '@/app/state/videos-state';
-import { BrollEdit } from '@/app/components/BrollsEditCard/BrollEdit/BrollEdit';
+import { BrollEdit } from '@/app/components/BrollsStage/BrollsEditCard/BrollEdit/BrollEdit';
 
 export const BrollsEditCard = () => {
   const { brollVideos } = useVideoStore();

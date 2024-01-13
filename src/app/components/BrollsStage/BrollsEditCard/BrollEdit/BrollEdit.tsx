@@ -13,7 +13,7 @@ import {
   Shrink,
   Trash2,
 } from 'lucide-react';
-import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 const convertTimeToNumber = (time: string): number => {
   const [minute, second] = time.split(/:/);
   return Number(minute) * 60 + Number(second);

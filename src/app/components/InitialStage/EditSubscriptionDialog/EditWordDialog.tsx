@@ -1,5 +1,5 @@
 'use client';
-import { Select, SelectOptionType } from '@/app/components/Select/Select';
+import { Select, SelectOptionType } from '@/app/components/shared/Select/Select';
 import {
   AlignCenterVertical,
   AlignEndVertical,

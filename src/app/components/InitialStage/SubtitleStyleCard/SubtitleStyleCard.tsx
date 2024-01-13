@@ -1,4 +1,4 @@
-import { ButtonGroupSelector } from '@/app/components/ButtonGroupSelector/ButtonGroupSelector';
+import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import React from 'react';
 import { useBoundStore } from '@/app/state/state';
 import { TranscriptionStyle } from '@/app/state/transcription-state';
