@@ -4,6 +4,7 @@ import { VoiceOverIcon } from '@/app/components/icons/VoiceOverIcon';
 import { ClosedCaptionsIcon } from '@/app/components/icons/ClosedCaptionsIcon';
 import { Select } from '@/app/components/shared/Select/Select';
 import { Fragment } from 'react';
+import {PlusIcon} from "@/app/components/icons/PlusIcon";
 
 export const LineSelector = () => {
   const lines = useBoundStore((state) => state.transcription.lines);
@@ -11,6 +12,9 @@ export const LineSelector = () => {
     <>
       {Array.from(lines).map(([key, value]) => (
         <Fragment key={key}>
+          <div>
+
+          </div>
           <div className='col-span-3 flex flex-row items-center justify-between rounded-md bg-white px-4 py-2'>
             <div className='pr-2'>{value.text}</div>
             <EditIcon />

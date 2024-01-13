@@ -6,9 +6,9 @@ export const SubtitleLanguageCard = () => {
     (state) => state.changeTranscriptionSettings,
   );
   return (
-    <div className='card gap-4'>
-      <div className='p-2 text-center text-black'>Subtitle Language Output</div>
-      <div className='flex flex-row justify-start gap-10'>
+    <div className='card gap-2'>
+      <div className='text-center text-black'>Subtitle Language Output</div>
+      <div className='flex flex-row justify-center gap-10'>
         {Object.values(Languages).map((language, index) => (
           <button
             key={index}
