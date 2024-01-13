@@ -1,7 +1,5 @@
 import { PlusIcon } from '@/app/components/icons/PlusIcon';
 import { ChangeEvent, useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { PlayIcon } from '@/app/components/icons/PlayIcon';
 
 interface FileUploaderButtonProps {
   onFileLoaded: (file: File) => void;

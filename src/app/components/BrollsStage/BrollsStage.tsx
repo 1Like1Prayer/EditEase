@@ -7,10 +7,7 @@ import { useS3PutObject } from '@/app/hooks/useS3Uploader/useS3PutObject';
 import { useVideoStore } from '@/app/state/videos-state';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { PexelsVideoPickerCard } from '@/app/components/BrollsStage/PexelsVideoPickerCard/PexelsVideoPickerCard';
-import { BrollsEditCard } from '@/app/components/BrollsStage/BrollsEditCard/BrollsEditCard';
 import { useBoundStore } from '@/app/state/state';
-import { VideoUploaderCard } from '@/app/components/BrollsStage/VideoUploader/VideoUploaderCard';
 
 export const BrollsStage = () => {
   const activateTransition = useBoundStore((state) => state.activateTransition);
@@ -129,13 +126,6 @@ export const BrollsStage = () => {
   return (
     <div className='absolute flex w-full flex-col items-center gap-10'>
       <div className='w-4/5 space-y-4'>
-        <VideoUploaderCard
-          title={'Select / Upload Your Main Videos'}
-          selectedFiles={mainVideo}
-          onSelectFile={addMainVideos}
-          onUnselectFile={removeMainVideos}
-        />
-        <PexelsVideoPickerCard />
         <BrollsEditCard />
       </div>
       {isInProcess ? (

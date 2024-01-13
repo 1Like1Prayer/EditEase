@@ -1,9 +1,8 @@
 'use client';
 
-import { BrollVideoType, useVideoStore } from '@/app/state/videos-state';
+import { BrollVideoType } from '@/app/state/videos-state';
 import {
   Ban,
-  Book,
   Drama,
   Droplets,
   Expand,
@@ -16,7 +15,7 @@ import {
   Trash2,
 } from 'lucide-react';
 import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
-import { useState } from 'react';
+import React, { useState } from 'react';
 const convertTimeToNumber = (time: string): number => {
   const [minute, second] = time.split(/:/);
   return Number(minute) * 60 + Number(second);
@@ -35,15 +34,16 @@ export const ANIMATION_OPTIONS = [
 
 interface BrollEditProps {
   broll: BrollVideoType;
+  onDelete: () => void;
+  onSave: (broll: BrollVideoType) => void;
 }
 
-export const BrollEdit = ({ broll }: BrollEditProps) => {
-  const { addBrollVideos, removeBrollVideos } = useVideoStore();
+export const BrollEdit = ({ broll, onDelete, onSave }: BrollEditProps) => {
   const [editedBroll, setEditBroll] = useState<BrollVideoType>({ ...broll });
-  const { link, pexelId } = broll;
+  const { link } = broll;
 
   return (
-    <div className='dropdown dropdown-bottom'>
+    <div className='dropdown dropdown-bottom absolute'>
       <div className='relative'>
         <div className='tooltip' data-tip='edit b-roll'>
           <video
@@ -116,16 +116,13 @@ export const BrollEdit = ({ broll }: BrollEditProps) => {
             </button>
             <button
               className='button bg-primary'
-              onClick={() => addBrollVideos(broll)}
+              onClick={() => onSave(editedBroll)}
             >
-              Apply
+              Save
             </button>
           </div>
           <div className='tooltip' data-tip='delete b-roll'>
-            <button
-              className='button bg-red-400'
-              onClick={() => removeBrollVideos(pexelId)}
-            >
+            <button className='button bg-red-400' onClick={() => onDelete()}>
               <Trash2 />
             </button>
           </div>
