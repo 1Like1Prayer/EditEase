@@ -1,13 +1,12 @@
 'use client';
 
 import { PexelsVideoResponseType } from '@/app/hooks/usePexelsVideo/usePexelsVideo';
-import { useAppSelector } from '@/app/state/redux/hooks';
 
 // TODO: use sharp to match the broll size to the main video size
 export const mapVideoMatchToMainVideo = (
   videos: PexelsVideoResponseType['data']['videos'],
+  mainVideo: File | null,
 ): PexelsVideoResponseType['data']['videos'] => {
-  const mainVideo = useAppSelector((state) => state.video.mainVideo);
   return videos
     .map((video) => ({
       ...video,
