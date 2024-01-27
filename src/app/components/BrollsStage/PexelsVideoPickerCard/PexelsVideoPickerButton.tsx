@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { mapVideoMatchToMainVideo } from '@/app/utils/matchMainVideoToBrolls';
 import { PlusIcon } from '@/app/components/icons/PlusIcon';
+import {useAppSelector} from '@/app/state/redux/hooks';
 
 interface PexelsVideoPickerButtonProps {
   onVideoChoosen: (video: PexelsVideoType) => void;
@@ -21,6 +22,7 @@ export const PexelsVideoPickerButton = ({
   const [videos, setVideos] = useState<
     PexelsVideoResponseType['data']['videos']
   >([]);
+  const mainVideo = useAppSelector(state=>state.video.mainVideo)
 
   const { data, refetch, refetchNextPage, isFetching } = usePexelsVideo({
     searchText,
@@ -71,7 +73,7 @@ export const PexelsVideoPickerButton = ({
           dataLength={videos.length}
         >
           <div className='grid grid-cols-5 gap-2 p-2'>
-            {mapVideoMatchToMainVideo(videos).map((video) => (
+            {mapVideoMatchToMainVideo(videos,mainVideo).map((video) => (
               <video
                 key={video.video_files[0].link}
                 muted

@@ -2,16 +2,15 @@
 
 import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import React, { useState } from 'react';
-import { useBoundStore } from '@/app/state/state';
-import { Languages } from '@/app/state/transcription-state';
+
+import { useAppDispatch } from '@/app/state/redux/hooks';
+import {changeTranscriptionSettings, Languages} from '@/app/state/redux/transcriptionSlice';
 
 export const DubbingLanguageCard = () => {
   const [isFullList, setFullList] = useState<boolean>(false);
-  const setDubbingLanguage = useBoundStore(
-    (state) => state.changeTranscriptionSettings,
-  );
+  const dispatch = useAppDispatch();
   const changeLanguage = (value: Languages) =>
-    setDubbingLanguage('dubLanguage', value);
+    dispatch(changeTranscriptionSettings({ field: 'dubLanguage', value }));
   return (
     <div className='card flex flex-row justify-between'>
       <div className='w-3/5 text-black'>

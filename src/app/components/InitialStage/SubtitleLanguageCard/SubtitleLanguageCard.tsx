@@ -1,10 +1,10 @@
-import { Languages } from '@/app/state/transcription-state';
-import { useBoundStore } from '@/app/state/state';
+
+import { useAppDispatch } from '@/app/state/redux/hooks';
+import {changeTranscriptionSettings, Languages} from '@/app/state/redux/transcriptionSlice';
 
 export const SubtitleLanguageCard = () => {
-  const setSubtitleLanguage = useBoundStore(
-    (state) => state.changeTranscriptionSettings,
-  );
+  const dispatch = useAppDispatch();
+
   return (
     <div className='card gap-2'>
       <div className='text-center text-black'>Subtitle Language Output</div>
@@ -13,7 +13,14 @@ export const SubtitleLanguageCard = () => {
           <button
             key={index}
             className='button'
-            onClick={() => setSubtitleLanguage('subLanguage', language)}
+            onClick={() =>
+              dispatch(
+                changeTranscriptionSettings({
+                  field: 'subLanguage',
+                  value: language,
+                }),
+              )
+            }
           >
             {language}
           </button>

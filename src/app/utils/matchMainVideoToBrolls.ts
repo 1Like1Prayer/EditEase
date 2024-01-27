@@ -1,20 +1,21 @@
 'use client';
 
 import { PexelsVideoResponseType } from '@/app/hooks/usePexelsVideo/usePexelsVideo';
-import { useVideoStore } from '@/app/state/videos-state';
 
 // TODO: use sharp to match the broll size to the main video size
 export const mapVideoMatchToMainVideo = (
   videos: PexelsVideoResponseType['data']['videos'],
+  mainVideo: File | null,
 ): PexelsVideoResponseType['data']['videos'] => {
-  const mainVideo = useVideoStore.getState().mainVideo;
-  return videos.map((video) => ({
-    ...video,
-    video_files: video.video_files.filter(
-      (videoQuality) =>
-        videoQuality.height === 1080 && videoQuality.width === 1920,
-    ),
-  })).filter((video) => video.video_files.length > 0);
+  return videos
+    .map((video) => ({
+      ...video,
+      video_files: video.video_files.filter(
+        (videoQuality) =>
+          videoQuality.height === 1080 && videoQuality.width === 1920,
+      ),
+    }))
+    .filter((video) => video.video_files.length > 0);
 
   // if (mainVideo) {
   //   sharp(URL.createObjectURL(mainVideo))

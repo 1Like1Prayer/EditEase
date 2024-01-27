@@ -1,4 +1,9 @@
 'use client';
+
+import {enableMapSet} from 'immer';
+
+enableMapSet();
+
 import React from 'react';
 import { HeaderComponent } from '@/app/components/headerComponent/HeaderComponent';
 import { InitialStage } from '@/app/components/InitialStage/InitialStage';

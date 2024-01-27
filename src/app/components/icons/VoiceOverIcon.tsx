@@ -1,19 +1,25 @@
-import { useBoundStore } from '@/app/state/state';
-import { Line } from '@/app/state/transcription-state';
 import { IconSettings } from '@/app/components/icons/ClosedCaptionsIcon';
+import { useAppDispatch, useAppSelector } from '@/app/state/redux/hooks';
+import { changeLineSettings, Line } from '@/app/state/redux/transcriptionSlice';
 
 export const VoiceOverIcon = ({ isActive, index }: IconSettings) => {
-  const lineDubbing = useBoundStore(
-    (state) => (state.transcription.lines.get(index) as Line).config.dubbing,
+  const lineDubbing = useAppSelector(
+    (state) => (state.transcription.lines.get(index) as Line)?.config.dubbing,
   );
-  const setIsDubbed = useBoundStore((state) => state.changeLineSettings);
+  const dispatch = useAppDispatch();
   return (
     <svg
       onClick={() =>
-        setIsDubbed<'dubbing'>(index, 'dubbing', {
-          voices: lineDubbing.voices,
-          isDubbed: !isActive,
-        })
+        dispatch(
+          changeLineSettings({
+            index: index,
+            field: 'dubbing',
+            value: {
+              voices: lineDubbing?.voices,
+              isDubbed: !isActive,
+            },
+          }),
+        )
       }
       xmlns='http://www.w3.org/2000/svg'
       height='36px'

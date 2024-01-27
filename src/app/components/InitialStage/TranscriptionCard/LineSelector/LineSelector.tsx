@@ -1,19 +1,20 @@
-import { useBoundStore } from '@/app/state/state';
 import { EditIcon } from '@/app/components/icons/EditIcon';
 import { VoiceOverIcon } from '@/app/components/icons/VoiceOverIcon';
 import { ClosedCaptionsIcon } from '@/app/components/icons/ClosedCaptionsIcon';
 import { Select } from '@/app/components/shared/Select/Select';
 import React, { Fragment, useState } from 'react';
 import { PexelsVideoPickerButton } from '@/app/components/BrollsStage/PexelsVideoPickerCard/PexelsVideoPickerButton';
-import { BrollVideoType } from '@/app/state/videos-state';
+
 import { PexelsVideoType } from '@/app/hooks/usePexelsVideo/usePexelsVideo';
 import {
   ANIMATION_OPTIONS,
   BrollEdit,
 } from '@/app/components/BrollsStage/BrollEdit/BrollEdit';
+import { useAppSelector } from '@/app/state/redux/hooks';
+import {BrollVideoType} from '@/app/state/redux/videoSlice';
 
 export const LineSelector = () => {
-  const lines = useBoundStore((state) => state.transcription.lines);
+  const lines = useAppSelector((state) => state.transcription.lines);
   const [brollVideo, setBrollVideo] = useState<BrollVideoType>();
   const onPexelVideoChoosen = (video: PexelsVideoType) => {
     setBrollVideo({
