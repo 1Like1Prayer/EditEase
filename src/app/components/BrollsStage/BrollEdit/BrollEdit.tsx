@@ -1,6 +1,5 @@
 'use client';
 
-import { BrollVideoType } from '@/app/state/videos-state';
 import {
   Ban,
   Drama,
@@ -16,6 +15,8 @@ import {
 } from 'lucide-react';
 import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import React, { useState } from 'react';
+import { BrollVideoType } from '@/app/state/redux/videoSlice';
+
 const convertTimeToNumber = (time: string): number => {
   const [minute, second] = time.split(/:/);
   return Number(minute) * 60 + Number(second);

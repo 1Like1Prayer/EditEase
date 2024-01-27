@@ -1,13 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useBoundStore } from '@/app/state/state';
+import { addLine } from '@/app/state/redux/transcriptionSlice';
+import { useAppDispatch } from '@/app/state/redux/hooks';
 
 type FormData = {
   line: string;
 };
 
 export const LineInput = () => {
-  const addLine = useBoundStore((state) => state.addLine);
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -17,7 +18,7 @@ export const LineInput = () => {
     defaultValues: { line: '' },
   });
 
-  const onSubmit = (data: FormData) => addLine(data.line);
+  const onSubmit = (data: FormData) => dispatch(addLine(data.line));
 
   return (
     <form className='col-span-5' onSubmit={handleSubmit(onSubmit)}>
@@ -26,11 +27,11 @@ export const LineInput = () => {
       </div>
       <div className='flex w-5/6 rounded-md bg-white pl-2 '>
         <textarea
-          className='bg-white w-full focus:outline-0'
+          className='w-full bg-white focus:outline-0'
           {...register('line', { required: true })}
           placeholder='Enter a New Subtitle Here'
         />
-        <button type='submit' className='font-bold px-4'>
+        <button type='submit' className='px-4 font-bold'>
           Add
         </button>
       </div>

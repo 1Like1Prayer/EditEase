@@ -1,11 +1,6 @@
 'use client';
 
-import { PlusIcon } from '@/app/components/icons/PlusIcon';
-import { ChangeEvent, useRef, useState } from 'react';
-import Image from 'next/image';
-import { PlayIcon } from '@/app/components/icons/PlayIcon';
-import { VideosSlice } from '@/app/state/videos-state';
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 import { FileUploaderButton } from '@/app/components/shared/FileUploaderButton/FileUploaderButton';
 
 export const VideoUploaderCard = () => {
@@ -23,7 +18,7 @@ export const VideoUploaderCard = () => {
               autoPlay
               loop
               muted
-              className={`relative h-full rounded-md object-cover sm:w-20 sm:h-20 `}
+              className={`relative h-full rounded-md object-cover sm:h-20 sm:w-20 `}
               src={(file && URL.createObjectURL(file)) || ''}
             />
           </div>

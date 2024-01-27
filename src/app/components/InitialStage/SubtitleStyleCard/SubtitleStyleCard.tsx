@@ -1,14 +1,15 @@
 import { ButtonGroupSelector } from '@/app/components/shared/ButtonGroupSelector/ButtonGroupSelector';
 import React from 'react';
-import { useBoundStore } from '@/app/state/state';
-import { TranscriptionStyle } from '@/app/state/transcription-state';
+
+import { useAppDispatch } from '@/app/state/redux/hooks';
+import {changeTranscriptionSettings, TranscriptionStyle} from '@/app/state/redux/transcriptionSlice';
 
 export const SubtitleStyleCard = () => {
-  const setSubtitleStyle = useBoundStore(
-    (state) => state.changeTranscriptionSettings,
-  );
+  const dispatch = useAppDispatch();
+
   const changeSubtitleStyle = (value: TranscriptionStyle) =>
-    setSubtitleStyle('style', value);
+    dispatch(changeTranscriptionSettings({ field: 'style', value }));
+
   return (
     <div className='card space-y-2'>
       <div className='text-center text-black'>Subtitle Style</div>

@@ -1,12 +1,11 @@
 import { SubtitleStyleCard } from '@/app/components/InitialStage/SubtitleStyleCard/SubtitleStyleCard';
 import { VoiceOverCard } from '@/app/components/InitialStage/VoiceOverCard/VoiceOverCard';
 import { DubbingLanguageCard } from '@/app/components/InitialStage/DubbingLanguageCard/DubbingLanguageCard';
-import React, { useState } from 'react';
+import React from 'react';
 import { GenerateButton } from '@/app/components/shared/GenerateButton/GenerateButton';
 import { TranscriptionCard } from '@/app/components/InitialStage/TranscriptionCard/TranscriptionCard';
 import { SubtitleLanguageCard } from '@/app/components/InitialStage/SubtitleLanguageCard/SubtitleLanguageCard';
 import { VideoUploaderCard } from '@/app/components/BrollsStage/VideoUploader/VideoUploaderCard';
-import { useVideoStore } from '@/app/state/videos-state';
 
 export const InitialStage = () => {
   return (
@@ -17,7 +16,7 @@ export const InitialStage = () => {
         {/*  <TranscriptSelectionCard />*/}
         {/*</div>*/}
         <div className='col-span-2'>
-          <VideoUploaderCard/>
+          <VideoUploaderCard />
         </div>
         <div className='col-span-2'>
           <SubtitleLanguageCard />
