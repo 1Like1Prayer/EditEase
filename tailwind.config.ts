@@ -9,16 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#dedede',
+        card: '#dedede',
         primary: '#cdbfff',
         secondary: '#ff8491',
         black: '#393c3d',
-        white: '#e7e7e7',
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        white: '#f4f4f4',
       },
     },
   },

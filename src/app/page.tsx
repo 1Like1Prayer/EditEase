@@ -1,34 +1,35 @@
+'use client';
+
+import {enableMapSet} from 'immer';
+
+enableMapSet();
+
 import React from 'react';
 import { HeaderComponent } from '@/app/components/headerComponent/HeaderComponent';
-import { TranscriptCard } from '@/app/components/TranscriptCard/TranscriptCard';
-import { SubtitleStyleCard } from '@/app/components/SubtitleStyleCard/SubtitleStyleCard';
-import { VoiceOverCard } from '@/app/components/VoiceOverCard/VoiceOverCard';
-import { LanguageCard } from '@/app/components/LanguageCard/LanguageCard';
-import { BackgroundMusicCard } from '@/app/components/BackgroundMusicCard/BackgroundMusicCard';
-import { GenerateButton } from '@/app/components/GenerateButton/GenerateButton';
+import { InitialStage } from '@/app/components/InitialStage/InitialStage';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/app/core/queryClient/queryClient';
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-around space-y-10 py-12'>
-      <HeaderComponent companyName={'Edit Ease'} />
-      <div className='grid w-4/5 grid-cols-2 gap-2'>
-        <div className='col-span-2'>
-          <TranscriptCard />
+    <QueryClientProvider client={queryClient}>
+      <main className='min-h-screen py-12'>
+        <HeaderComponent companyName={'EditEase'} />
+        <div className='grid grid-cols-2'>
+          <InitialStage />
+          <div className='flex justify-center'>
+            <iframe
+              width='560'
+              height='315'
+              src='https://www.youtube.com/embed/dQw4w9WgXcQ?si=FwphtZAj-UDiEN2h'
+              title='YouTube video player'
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
-        <div>
-          <SubtitleStyleCard />
-        </div>
-        <div>
-          <VoiceOverCard />
-        </div>
-        <div className='col-span-2'>
-          <LanguageCard />
-        </div>
-        <div className=''>
-          <BackgroundMusicCard />
-        </div>
-      </div>
-      <GenerateButton />
-    </main>
+      </main>
+    </QueryClientProvider>
   );
 }
